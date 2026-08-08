@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="198" height="44" viewBox="0 0 198 44" role="img" aria-labelledby="title desc">
+  <title id="title">ECplayers</title>
+  <desc id="desc">Green EC monogram with ECplayers wordmark</desc>
+  <rect x="1" y="2" width="40" height="40" rx="11" fill="#1AAE72"/>
+  <text x="21" y="30" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="900" letter-spacing="-1.8">EC</text>
+  <text x="52" y="30" fill="#0D1B14" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900" letter-spacing="-1.5">EC<tspan fill="#1AAE72">players</tspan></text>
+</svg>
