@@ -87,7 +87,7 @@ export default function CompanyPage() {
       <footer className={styles.footer}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <span>運営：株式会社まんがびと</span>
-        <nav><a href="/company">会社概要</a><a href="https://mangabito.biz/" target="_blank" rel="noreferrer">公式サイト</a></nav>
+        <nav><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a><a href="https://mangabito.biz/" target="_blank" rel="noreferrer">公式サイト</a></nav>
         <small>© 株式会社まんがびと</small>
       </footer>
     </main>
