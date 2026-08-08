@@ -20,11 +20,11 @@ const businesses = [
 ]
 
 const history = [
-  ['2004', 'インターネットショップ「上海問屋」の立ち上げに参画。'],
-  ['2005–2012', '楽天市場ショップ・オブ・ザ・イヤーを通算6回受賞。'],
+  ['2004', '代表・平田 学が、インターネットショップ「上海問屋」をゼロから立ち上げ。'],
+  ['2005–2012', '代表・平田 学が運営に携わった店舗で、楽天市場ショップ・オブ・ザ・イヤーを通算6回受賞。'],
   ['2013', '株式会社まんがびとを設立。'],
-  ['2015', 'ECコンサルティング事業を開始。'],
-  ['NOW', '出版とECの実務経験をもとに、ECplayersを企画・開発。'],
+  ['2015', '株式会社まんがびとでECコンサルティング事業を開始。'],
+  ['NOW', '代表のEC実務経験と株式会社まんがびとの事業経験をもとに、ECplayersを企画・開発。'],
 ]
 
 export default function CompanyPage() {
@@ -51,7 +51,7 @@ export default function CompanyPage() {
         <div className={styles.companyCopy}>
           <span>ABOUT MANGABITO</span>
           <h2>ECの実務から、<br />役に立つ仕組みをつくる。</h2>
-          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、長年のEC運営・改善の経験を、誰でも使える診断・比較・分析の仕組みに変えていきます。</p>
+          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、代表・平田 学が長年培ってきたEC運営・改善の経験を、誰でも使える診断・比較・分析の仕組みに変えていきます。</p>
           <a href="https://mangabito.biz/" target="_blank" rel="noreferrer">株式会社まんがびと 公式サイト →</a>
         </div>
       </section>
@@ -66,7 +66,7 @@ export default function CompanyPage() {
       </section>
 
       <section className={styles.historySection}>
-        <div className={styles.sectionHead}><span>BACKGROUND</span><h2>ECとの歩み</h2><p>ECplayersの背景には、ECを実際に運営し、改善してきた経験があります。</p></div>
+        <div className={styles.sectionHead}><span>BACKGROUND</span><h2>代表のEC経歴と、まんがびとの歩み</h2><p>2013年以前は代表・平田 学個人のEC経歴、2013年以降は株式会社まんがびとの沿革です。</p></div>
         <div className={styles.historyList}>
           {history.map(([year, text]) => <div key={year}><b>{year}</b><span>{text}</span></div>)}
         </div>
