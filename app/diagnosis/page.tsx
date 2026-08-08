@@ -44,7 +44,7 @@ export default function DiagnosisPage() {
         <p>この無料診断はAI ECマネージャーの入口です。今後はGA4・広告・モールデータを接続し、異常検知、原因分析、改善優先順位まで一つの画面にまとめます。</p>
       </section>
 
-      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><small>© ECplayers</small></footer>
+      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/company">運営：株式会社まんがびと</a><small>© ECplayers</small></footer>
     </main>
   )
 }
