@@ -10,7 +10,7 @@ const compareRows = [
 ]
 
 const metrics = [
-  ['価格', '表示価格を取得して商品間で比較'],
+  ['価格', '表示価格を確認して商品間で比較'],
   ['評価・レビュー数', '星評価とレビュー件数を横並び'],
   ['画像・動画', '画像枚数と動画の有無を確認'],
   ['A+', 'A+コンテンツの有無を確認'],
@@ -24,7 +24,7 @@ export default function Home() {
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <nav className={styles.nav}>
-          <a href="#extension">Amazon比較</a>
+          <a href="#extension">商品比較</a>
           <a href="/diagnosis">ECサイト診断</a>
           <a href="#future">今後の機能</a>
           <a href="/company">会社概要</a>
@@ -34,23 +34,22 @@ export default function Home() {
 
       <section className={styles.hero} id="extension">
         <div className={styles.heroCopy}>
-          <div className={styles.eyebrow}>CHROME EXTENSION / BETA BUILDING</div>
-          <h1>Amazonの商品比較を、<br /><em>もっと軽く。</em></h1>
-          <p className={styles.heroLead}>見ている商品を「分析対象に追加」。価格、評価、レビュー数、画像枚数、A+など、画面に出ている公開情報をその場で集めて、複数商品を並べて比較します。</p>
+          <div className={styles.eyebrow}>ECplayers PRODUCT COMPARE / BETA BUILDING</div>
+          <h1>商品比較を、<br /><em>もっと軽く。</em></h1>
+          <p className={styles.heroLead}>Amazon.co.jpの商品ページに対応予定。現在表示している商品ページをユーザー操作でチェックし、価格、評価、レビュー件数、画像枚数、A+の有無などを整理して、複数商品を並べて比較します。</p>
           <div className={styles.promiseRow}>
-            <span>登録不要</span><span>公開情報だけ</span><span>AIなしで定量分析</span><span>ユーザー操作起点</span>
+            <span>現在のページだけ</span><span>自動巡回なし</span><span>AIなしで定量分析</span><span>ユーザー操作起点</span>
           </div>
           <div className={styles.actions}>
             <span className={styles.buildingButton}>Chrome拡張 β版 開発中</span>
-            <a className={styles.secondary} href="/diagnosis">ECサイト無料診断を使う →</a>
           </div>
-          <p className={styles.micro}>まずは軽く、速く、分かりやすく。AIは必要になった部分だけ後から追加します。</p>
+          <p className={styles.micro}>β版は、必要最小限の情報だけをユーザー操作で確認する設計です。まずは軽く、速く、分かりやすく。</p>
         </div>
 
         <div className={styles.extensionMock} aria-label="Chrome拡張の商品比較画面イメージ">
           <div className={styles.mockChrome}>
             <div className={styles.dots}><i/><i/><i/></div>
-            <span>amazon.co.jp / 商品ページ</span>
+            <span>Amazon.co.jp 商品ページ</span>
             <b>ECplayers</b>
           </div>
           <div className={styles.currentProduct}>
@@ -68,7 +67,7 @@ export default function Home() {
       </section>
 
       <section className={styles.flowStrip}>
-        <div><b>01</b><span>Amazonで商品を見る</span></div>
+        <div><b>01</b><span>商品ページを見る</span></div>
         <i>→</i><div><b>02</b><span>分析対象に追加</span></div>
         <i>→</i><div><b>03</b><span>競合も追加</span></div>
         <i>→</i><div><b>04</b><span>まとめて比較</span></div>
@@ -78,7 +77,7 @@ export default function Home() {
         <div className={styles.sectionHead}>
           <span className={styles.label}>WHAT IT CHECKS</span>
           <h2>まずは、数字だけで<br />十分わかることから。</h2>
-          <p>最初からAIに考えさせません。ブラウザに表示されている公開情報を取得し、普通のコードで整理・比較します。</p>
+          <p>最初からAIに考えさせません。現在ブラウザに表示されている情報のうち、比較に必要な項目をユーザー操作で確認し、普通のコードで整理・比較します。</p>
         </div>
         <div className={styles.metricGrid}>
           {metrics.map(([title, body]) => <article key={title}><div>✓</div><h3>{title}</h3><p>{body}</p></article>)}
@@ -89,7 +88,7 @@ export default function Home() {
         <div className={styles.compareCopy}>
           <span className={styles.label}>MULTI PRODUCT COMPARE</span>
           <h2>気になる商品を、<br />どんどん入れる。</h2>
-          <p>自社・競合・参考商品を分けて保存。複数商品がリストに入ったら、同じ指標で横並びにします。</p>
+          <p>自社・競合・参考商品として比較リストに追加。複数商品が入ったら、同じ指標で横並びにします。</p>
           <div className={styles.tagExample}><span>自社商品</span><span>競合商品</span><span>参考商品</span></div>
         </div>
         <div className={styles.tableCard}>
@@ -100,12 +99,17 @@ export default function Home() {
       </section>
 
       <section className={styles.principles}>
-        <div className={styles.sectionHead}><span className={styles.label}>LIGHT BY DESIGN</span><h2>勝手に集めない。<br />見ているものだけ。</h2></div>
+        <div className={styles.sectionHead}><span className={styles.label}>PRIVACY & DATA DESIGN</span><h2>勝手に集めない。<br />必要なものだけ。</h2></div>
         <div className={styles.principleGrid}>
-          <article><b>01</b><h3>公開情報のみ</h3><p>Amazonの商品ページなど、ユーザーがブラウザで見ている公開情報を対象にします。</p></article>
-          <article><b>02</b><h3>ユーザー操作起点</h3><p>自動でAmazon全体を巡回せず、「分析対象に追加」を押したページだけを取得します。</p></article>
-          <article><b>03</b><h3>個人情報を集めない</h3><p>Seller Central、注文情報、顧客情報などの非公開情報はMVPでは扱いません。</p></article>
-          <article><b>04</b><h3>AIを使いすぎない</h3><p>数えられるものはコードで。AIは画像の意味やレビュー内容など、本当に必要な部分だけに使います。</p></article>
+          <article><b>01</b><h3>現在のページだけ</h3><p>ユーザーが操作した時点で表示している商品ページを対象にします。サイト全体を自動巡回する用途にはしません。</p></article>
+          <article><b>02</b><h3>ユーザー操作起点</h3><p>「分析対象に追加」など、ユーザーが明示的に操作したときだけチェックする設計です。</p></article>
+          <article><b>03</b><h3>原文・画像をためない</h3><p>初期版ではHTML、商品画像、レビュー本文そのものを当社サーバーへ保存せず、比較に必要な定量情報を中心に扱う方針です。</p></article>
+          <article><b>04</b><h3>必要最小限の権限</h3><p>Chrome拡張では機能提供に必要な範囲の権限だけを求め、取得内容と利用目的を明示します。</p></article>
+        </div>
+        <div className={styles.legalNote}>
+          <strong>第三者サービスについて</strong>
+          <p>ECplayersは株式会社まんがびとが独自に開発・運営するサービスです。Amazon、Amazon.co.jpおよび関連する名称・商標はAmazon.com, Inc.またはその関連会社に帰属します。ECplayersはAmazon.com, Inc.またはその関連会社との提携・承認・後援関係にはありません。</p>
+          <div><a href="/terms">利用規約</a><a href="/privacy">プライバシーポリシー</a><a href="/trademarks">第三者商標について</a></div>
         </div>
       </section>
 
@@ -114,7 +118,7 @@ export default function Home() {
           <span className={styles.liveBadge}>LIVE</span>
           <span className={styles.label}>WEB TOOL</span>
           <h2>ECサイト診断は、<br />今すぐ使えます。</h2>
-          <p>自社ECのURLを入れると、SEO・商品情報・購入導線など、公開ページから取れる情報を無料で定量診断します。</p>
+          <p>自社ECのURLを入れると、SEO・商品情報・購入導線など、公開ページから確認できる情報を無料で定量診断します。</p>
           <a href="/diagnosis">ECサイトを無料診断する →</a>
         </div>
         <div className={styles.webScore}>
@@ -132,7 +136,7 @@ export default function Home() {
           <i>→</i>
           <article><small>LATER</small><h3>AI分析</h3><p>レビュー内容や画像訴求など、意味理解が必要な部分だけAIで深掘り。</p></article>
           <i>→</i>
-          <article><small>FUTURE</small><h3>AI ECマネージャー</h3><p>保存商品を継続監視し、「今日やること」だけを提示。</p></article>
+          <article><small>FUTURE</small><h3>AI ECマネージャー</h3><p>許可された方法で取得できるデータを活用し、「今日やること」の提示へつなげます。</p></article>
         </div>
       </section>
 
@@ -146,7 +150,7 @@ export default function Home() {
       <footer className={styles.footer}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <span>EC分析を、もっと軽く。</span>
-        <nav><a href="#extension">Amazon比較</a><a href="/diagnosis">ECサイト診断</a><a href="#future">今後の機能</a><a href="/company">会社概要</a></nav>
+        <nav><a href="#extension">商品比較</a><a href="/diagnosis">ECサイト診断</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a></nav>
         <a className={styles.operator} href="/company">運営：株式会社まんがびと</a>
       </footer>
     </main>
