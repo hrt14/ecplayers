@@ -10,7 +10,7 @@ const items = [
 export default function AIManagerPage() {
   return (
     <main className={styles.page}>
-      <header className={styles.header}><a href="/" className={styles.brand}>EC<span>players</span></a><nav><a href="/diagnosis">ECサイト診断</a><a className={styles.cta} href="/diagnosis">無料で試す</a></nav></header>
+      <header className={styles.header}><a href="/" className={styles.brand}>EC<span>players</span></a><nav><a href="/diagnosis">ECサイト診断</a><a href="/company">会社概要</a><a className={styles.cta} href="/diagnosis">無料で試す</a></nav></header>
 
       <section className={styles.hero}>
         <div className={styles.kicker}>AI EC MANAGER</div>
@@ -40,7 +40,7 @@ export default function AIManagerPage() {
         <span>NOW BUILDING</span><h2>まずは、単発診断から。</h2><p>現在はECサイトの公開ページ診断を提供中です。次にAmazon商品診断、レビュー分析、競合比較を追加し、そのまま商品保存・継続管理へつなげます。</p><a href="/diagnosis">ECサイト診断を使う →</a>
       </section>
 
-      <footer className={styles.footer}><a href="/" className={styles.brand}>EC<span>players</span></a><span>売上を伸ばす、次の一手がわかる。</span><a href="/">トップへ戻る</a></footer>
+      <footer className={styles.footer}><a href="/" className={styles.brand}>EC<span>players</span></a><span>売上を伸ばす、次の一手がわかる。</span><a href="/company">運営：株式会社まんがびと</a><a href="/">トップへ戻る</a></footer>
     </main>
   )
 }
