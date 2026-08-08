@@ -3,8 +3,8 @@ import DiagnosisClient from './DiagnosisClient'
 import styles from './diagnosis.module.css'
 
 export const metadata: Metadata = {
-  title: '無料AI EC診断 | ECplayers',
-  description: 'ECサイトのURLを入力するだけ。公開ページを分析し、検索流入・商品ページ・購入導線の改善ポイントを無料で診断します。',
+  title: '無料ECサイト診断 | ECplayers',
+  description: 'ECサイトのURLを入力するだけ。公開ページをチェックし、検索流入・商品ページ・購入導線の改善ポイントを無料で定量診断します。',
 }
 
 export default function DiagnosisPage() {
@@ -16,9 +16,9 @@ export default function DiagnosisPage() {
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.badge}>AI EC MANAGER / BETA</div>
+        <div className={styles.badge}>FREE EC SITE CHECK</div>
         <h1>あなたのEC、<br /><em>どこを直せば伸びる？</em></h1>
-        <p className={styles.lead}>ECサイトのURLを入れるだけ。公開ページを読み取り、検索流入・商品ページ・購入導線を自動チェックします。</p>
+        <p className={styles.lead}>ECサイトのURLを入れるだけ。公開ページを読み取り、検索流入・商品ページ・購入導線をルールベースで自動チェックします。</p>
         <DiagnosisClient />
         <div className={styles.safetyLine}>
           <span>✓ 登録不要で診断</span>
@@ -41,10 +41,10 @@ export default function DiagnosisPage() {
 
       <section className={styles.roadmap}>
         <div><span>NEXT</span><h2>最終的には、毎朝<br />「今日やるべき3つ」まで。</h2></div>
-        <p>この無料診断はAI ECマネージャーの入口です。今後はGA4・広告・モールデータを接続し、異常検知、原因分析、改善優先順位まで一つの画面にまとめます。</p>
+        <p>この無料診断はECplayersの入口です。今後は、許可された方法で取得できるデータを活用し、異常検知、原因分析、改善優先順位まで一つの画面にまとめていきます。</p>
       </section>
 
-      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/company">運営：株式会社まんがびと</a><small>© ECplayers</small></footer>
+      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/company">運営：株式会社まんがびと</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><small>© 株式会社まんがびと</small></footer>
     </main>
   )
 }
