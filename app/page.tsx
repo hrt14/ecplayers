@@ -27,6 +27,7 @@ export default function Home() {
           <a href="#extension">Amazon比較</a>
           <a href="/diagnosis">ECサイト診断</a>
           <a href="#future">今後の機能</a>
+          <a href="/company">会社概要</a>
           <a className={styles.navCta} href="/diagnosis">無料診断を使う</a>
         </nav>
       </header>
@@ -145,8 +146,8 @@ export default function Home() {
       <footer className={styles.footer}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <span>EC分析を、もっと軽く。</span>
-        <nav><a href="#extension">Amazon比較</a><a href="/diagnosis">ECサイト診断</a><a href="#future">今後の機能</a></nav>
-        <span className={styles.operator}>運営：まんがびと</span>
+        <nav><a href="#extension">Amazon比較</a><a href="/diagnosis">ECサイト診断</a><a href="#future">今後の機能</a><a href="/company">会社概要</a></nav>
+        <a className={styles.operator} href="/company">運営：株式会社まんがびと</a>
       </footer>
     </main>
   )
