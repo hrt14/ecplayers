@@ -20,11 +20,15 @@ const businesses = [
 ]
 
 const history = [
-  ['2004', '代表・平田 学が、インターネットショップ「上海問屋」をゼロから立ち上げ。'],
-  ['2005–2012', '代表・平田 学が運営に携わった店舗で、楽天市場ショップ・オブ・ザ・イヤーを通算6回受賞。'],
-  ['2013', '株式会社まんがびとを設立。'],
-  ['2015', '株式会社まんがびとでECコンサルティング事業を開始。'],
-  ['NOW', '代表のEC実務経験と株式会社まんがびとの事業経験をもとに、ECplayersを企画・開発。'],
+  ['2001', '株式会社サードウェーブにアルバイトとして入社。パソコンショップ店長を経て、中国での新規事業立ち上げ、新商品開拓を行う。'],
+  ['2004', 'グループ会社である株式会社エバーグリーンに出向。同年、インターネットショップ「上海問屋」を立ち上げる。'],
+  ['2005–2012', '「上海問屋」を、楽天市場で通算6回（2005/2006/2007/2008/2011/2012）のショップ・オブ・ザ・イヤー受賞を果たす人気ショップに育て上げる。'],
+  ['2011', '株式会社エバーグリーン取締役に就任。'],
+  ['2013', '同社取締役を辞任し、株式会社まんがびとを設立。'],
+  ['2014', 'まんがびとビジネスhowtoブック事業開始。'],
+  ['2015', 'ECコンサル事業開始。'],
+  ['2016', '電子書籍事業の出版数1000冊突破。'],
+  ['NOW', 'ECplayersを企画・開発。'],
 ]
 
 export default function CompanyPage() {
@@ -51,7 +55,7 @@ export default function CompanyPage() {
         <div className={styles.companyCopy}>
           <span>ABOUT MANGABITO</span>
           <h2>ECの実務から、<br />役に立つ仕組みをつくる。</h2>
-          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、代表・平田 学が長年培ってきたEC運営・改善の経験を、誰でも使える診断・比較・分析の仕組みに変えていきます。</p>
+          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、長年のEC運営・改善の経験を、誰でも使える診断・比較・分析の仕組みに変えていきます。</p>
           <a href="https://mangabito.biz/" target="_blank" rel="noreferrer">株式会社まんがびと 公式サイト →</a>
         </div>
       </section>
@@ -66,7 +70,7 @@ export default function CompanyPage() {
       </section>
 
       <section className={styles.historySection}>
-        <div className={styles.sectionHead}><span>BACKGROUND</span><h2>代表のEC経歴と、まんがびとの歩み</h2><p>2013年以前は代表・平田 学個人のEC経歴、2013年以降は株式会社まんがびとの沿革です。</p></div>
+        <div className={styles.sectionHead}><span>BACKGROUND</span><h2>代表のEC経歴と、まんがびとの歩み</h2><p>以下は、株式会社まんがびと代表・平田 学の経歴と、会社設立後の歩みです。</p></div>
         <div className={styles.historyList}>
           {history.map(([year, text]) => <div key={year}><b>{year}</b><span>{text}</span></div>)}
         </div>
