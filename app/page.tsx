@@ -1,75 +1,120 @@
-import MarketDiagnosis from './MarketDiagnosis'
+import styles from './Home.module.css'
 
-const playerTags = ['楽天市場', 'Amazon', 'Shopify', 'Yahoo!ショッピング', '広告運用', 'CRM', '商品開発', '物流', 'デザイン']
-
-const players = [
-  { id: '01842', title: '楽天市場の運営・改善が得意', meta: 'EC運営 10年以上', availability: '月20〜40時間', tags: ['楽天市場', 'RPP', '商品ページ改善'], text: '年商10億円規模のEC事業で運営経験。売上分析から広告運用、商品ページ改善まで対応可能。' },
-  { id: '00617', title: 'Amazon広告・商品改善を支援', meta: 'EC支援 7年以上', availability: '月10〜30時間', tags: ['Amazon', '広告運用', 'SEO'], text: 'メーカー・小売のAmazon運用を経験。広告最適化と商品ページ改善を中心に支援できます。' },
-  { id: '02109', title: '自社ECのグロースが得意', meta: 'EC責任者経験あり', availability: '月20時間〜', tags: ['Shopify', 'CRM', '分析'], text: '自社ECの立ち上げから運営改善まで経験。CRM、LTV改善、サイト分析を横断して対応。' },
-  { id: '01456', title: 'ECデザイン・LP改善を担当', meta: '制作経験 8年以上', availability: 'スポット相談可', tags: ['デザイン', 'LP', 'バナー'], text: 'EC向けクリエイティブを中心に、LP・商品画像・広告バナーの改善に対応できます。' },
-  { id: '00983', title: '物流・バックヤード改善が得意', meta: '物流管理 10年以上', availability: '月10時間〜', tags: ['物流', '在庫', '業務改善'], text: '出荷、在庫、倉庫連携などECバックヤードの改善と運用設計を経験しています。' },
-  { id: '02531', title: '商品企画から販売まで伴走', meta: 'メーカーEC経験あり', availability: 'プロジェクト可', tags: ['商品開発', '販促', 'モール'], text: '商品企画・発売・販促まで一連のEC業務を経験。新商品の立ち上げ支援が可能です。' },
+const tasks = [
+  { n: '01', title: '商品AのCVR低下を確認', body: '競合値下げと商品ページ訴求の弱まりが要因候補です。', impact: '優先度 高' },
+  { n: '02', title: '広告予算の配分を見直す', body: 'ROASの高いキャンペーンへ予算を寄せる余地があります。', impact: '+売上余地' },
+  { n: '03', title: '検索流入の弱い商品を改善', body: 'タイトル・説明文・内部導線の改善候補を抽出しました。', impact: 'SEO' },
 ]
 
-const jobs = [
-  { id: '00321', title: '楽天市場の売上改善を相談したい', company: '食品メーカー', condition: '月15〜25万円', tags: ['楽天', '月20時間程度', 'リモート'], text: 'EC年商1〜5億円。楽天市場の改善を一緒に進められる経験者を探しています。' },
-  { id: '00148', title: 'Amazon運営を一緒に伸ばしたい', company: '生活雑貨メーカー', condition: '月10〜20万円', tags: ['Amazon', '広告運用', 'リモート'], text: '広告と商品ページを中心に、運用を伴走してくれるプレイヤーを探しています。' },
-  { id: '00402', title: 'ShopifyのCRM改善を相談したい', company: 'D2Cブランド', condition: '条件応相談', tags: ['Shopify', 'CRM', 'スポット可'], text: 'リピート率とLTV改善のため、CRM施策を一緒に設計できる経験者を探しています。' },
+const features = [
+  ['今日やること', '数字の変化から、優先して着手すべき施策を絞り込みます。'],
+  ['売上・CVR分析', 'セッション、CVR、客単価に分解してボトルネックを見つけます。'],
+  ['広告分析', '広告費・ROAS・CPC・CVRを見ながら予算配分の改善余地を探します。'],
+  ['商品・競合分析', '商品ページ、価格、訴求、競合との差から改善候補を整理します。'],
 ]
 
 export default function Home() {
   return (
-    <main>
-      <header className="header">
-        <a className="logo" href="#">EC<span>players</span></a>
-        <nav>
-          <a href="#players">プレイヤーを探す</a>
-          <a href="#jobs">仕事を探す</a>
-          <a href="#diagnosis">報酬診断</a>
-          <a href="#about">ECplayersとは</a>
-          <a className="navButton" href="#register">3分で無料登録</a>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <a href="/" className={styles.brand}>EC<span>players</span></a>
+        <nav className={styles.nav}>
+          <a href="/diagnosis">無料EC診断</a>
+          <a href="/ai-manager">AI ECマネージャー</a>
+          <a href="#pro">プロに依頼</a>
+          <a href="/diagnosis">無料で診断する</a>
         </nav>
       </header>
 
-      <section className="hero">
-        <div className="eyebrow">EC BUSINESS NETWORK</div>
-        <h1>ECの経験が、<br /><em>仕事になる。</em></h1>
-        <p className="lead">ECの経験を持つ人と、ECの力を必要とする企業が、もっと気軽につながれる場所。<br className="desktop" />本名や勤務先を出さずに使える、無料のECビジネスマッチングサイトです。</p>
-        <div className="searchBox"><div className="searchIcon">⌕</div><div className="searchCopy"><small>スキル・経験から探す</small><strong>楽天、Amazon、Shopify、広告運用...</strong></div><a href="#players">探す →</a></div>
-        <div className="quickTags">{playerTags.slice(0,6).map(tag => <a href="#players" key={tag}>{tag}</a>)}</div>
-        <div className="actions" id="register"><a className="primary" href="#players">3分で匿名プロフィールを作る <b>→</b></a><a className="secondary" href="#jobs">3分で相談を掲載する <b>→</b></a></div>
-        <div className="freeLine"><span>登録</span><b>0円</b><i>・</i><span>掲載</span><b>0円</b><i>・</i><span>マッチング</span><b>0円</b></div>
-      </section>
-
-      <section className="networkStrip"><p>ECに関わる、いろんな経験が集まる。</p><div>{playerTags.map(tag => <span key={tag}>{tag}</span>)}</div></section>
-
-      <MarketDiagnosis />
-
-      <section className="section" id="players">
-        <div className="sectionHeadRow"><div className="sectionHeading"><span>FIND PLAYERS</span><h2>会社名ではなく、<br />できることで探す。</h2><p>仕事に必要なスキル・経歴・稼働条件だけで探せる、匿名のECプレイヤーデータベース。</p></div><a className="textLink" href="#">プレイヤーをすべて見る →</a></div>
-        <div className="notice"><b>掲載イメージ</b><span>実際の登録が始まると、ここに匿名プレイヤーが増えていきます。</span></div>
-        <div className="cardGrid playerGrid">
-          {players.map((p, index) => <article className="profileCard" key={p.id}><div className="cardTop"><div className={`avatar a${index % 3}`}>P</div><div><small>PLAYER #{p.id}</small><strong>{p.meta}</strong></div><span className="availability">{p.availability}</span></div><h3>{p.title}</h3><div className="tags">{p.tags.map(t => <span key={t}>{t}</span>)}</div><p>{p.text}</p><button>この人に連絡してみる <span>→</span></button></article>)}
+      <section className={styles.hero}>
+        <div>
+          <div className={styles.eyebrow}>AI COMMERCE ACTION PLATFORM</div>
+          <h1>売上を伸ばす、<br /><em>次の一手</em>がわかる。</h1>
+          <p className={styles.heroLead}>売上・広告・商品・競合をAIが分析。いま何を改善すべきかを見つけ、実行までつなげるEC改善プラットフォームです。</p>
+          <div className={styles.actions}>
+            <a className={styles.primary} href="/diagnosis">あなたのECを無料診断 →</a>
+            <a className={styles.secondary} href="/ai-manager">AI ECマネージャーを見る</a>
+          </div>
+          <p className={styles.micro}>まずはURLだけで診断。ログインやカード登録は不要です。</p>
         </div>
-        <div className="centerAction"><a href="#register">あなたのEC経験も登録する →</a><small>本名・勤務先の公開は不要です</small></div>
+
+        <div className={styles.dashboard} aria-label="AI ECマネージャーの画面イメージ">
+          <div className={styles.dashTop}><strong>AI EC Manager</strong><span className={styles.live}>● DAILY CHECK</span></div>
+          <div className={styles.score}>
+            <small>EC HEALTH SCORE</small>
+            <div className={styles.scoreRow}><strong>72</strong><span>+4 pts 今週</span></div>
+          </div>
+          <div className={styles.todayTitle}>TODAY&apos;S ACTION</div>
+          {tasks.map(task => (
+            <div className={styles.task} key={task.n}>
+              <div className={styles.taskTop}><span className={styles.num}>{task.n}</span><strong>{task.title}</strong><span className={styles.impact}>{task.impact}</span></div>
+              <p>{task.body}</p>
+            </div>
+          ))}
+          <div className={styles.handoff}>↗ 人の専門性が必要な施策は、プロへの依頼につなげる。</div>
+        </div>
       </section>
 
-      <section className="section jobsSection" id="jobs">
-        <div className="sectionHeadRow"><div className="sectionHeading"><span>FIND WORK</span><h2>「ちょっと相談したい」も、<br />立派な仕事になる。</h2><p>企業名を公開せず、課題・条件・必要な経験からプレイヤーを募集できます。</p></div><a className="textLink" href="#">仕事をすべて見る →</a></div>
-        <div className="notice white"><b>案件掲載イメージ</b><span>業務委託・副業・スポット相談など、ECの仕事を幅広く掲載できます。</span></div>
-        <div className="jobGrid">{jobs.map(j => <article className="jobCard" key={j.id}><div className="jobHeader"><div className="jobLabel">COMPANY #{j.id}</div><span className="statusDot">● 募集中</span></div><div className="companyType">{j.company}</div><h3>{j.title}</h3><strong className="condition">{j.condition}</strong><div className="tags">{j.tags.map(t => <span key={t}>{t}</span>)}</div><p>{j.text}</p><button>この企業に連絡してみる <span>→</span></button></article>)}</div>
-        <div className="companyCta"><div><span>FOR COMPANIES</span><h3>ECの課題を、まず匿名で出してみる。</h3><p>採用ほど重くなく、問い合わせほど曖昧でもない。「誰かに相談したい」を無料で掲載できます。</p></div><a href="#register">3分で相談を掲載 →</a></div>
+      <section className={styles.strip}>
+        <div className={styles.stripInner}>
+          <div className={styles.stripItem}><small>01 / FIND</small><strong>課題を見つける</strong></div>
+          <div className={styles.stripItem}><small>02 / DECIDE</small><strong>次の一手を決める</strong></div>
+          <div className={styles.stripItem}><small>03 / ACT</small><strong>AIか人が実行する</strong></div>
+          <div className={styles.stripItem}><small>04 / LEARN</small><strong>結果からまた改善する</strong></div>
+        </div>
       </section>
 
-      <section className="sideBySide"><article><span>FOR PLAYERS</span><h2>会社員でも、<br />気軽に登録できる。</h2><p>名前や勤務先を公開せず、ECの経験と「こんな仕事なら話を聞きたい」だけ登録。今すぐ転職や独立を考えていなくても使えます。</p><a href="#register">匿名プロフィールを作る →</a></article><article className="forCompany"><span>FOR COMPANIES</span><h2>採用前に、<br />まず話せる。</h2><p>求人票を作り込まなくても、困っていることと条件だけで掲載できます。気になるプレイヤーがいたら「連絡してみる」。</p><a href="#register">匿名で相談を掲載する →</a></article></section>
+      <section className={styles.section}>
+        <div className={styles.sectionHead}>
+          <span className={styles.label}>FROM DATA TO ACTION</span>
+          <h2>分析で終わらない。<br />ECを動かす。</h2>
+          <p>管理画面を眺める時間を減らして、「結局、今日は何をすればいいのか」まで落とし込みます。</p>
+        </div>
+        <div className={styles.steps}>
+          <article className={styles.step}><span className={styles.stepNum}>01</span><h3>見つける</h3><p>売上、流入、CVR、広告、商品ページなどから変化と改善余地を発見します。</p></article>
+          <article className={styles.step}><span className={styles.stepNum}>02</span><h3>決める</h3><p>インパクトと緊急度から、やるべき施策を優先順位付きで提案します。</p></article>
+          <article className={styles.step}><span className={styles.stepNum}>03</span><h3>つなげる</h3><p>AIでできる作業はAIへ。人の経験が必要な課題は専門家への依頼につなげます。</p></article>
+        </div>
+      </section>
 
-      <section className="philosophy" id="about"><div><span>WHY ECplayers?</span><h2>もっと気軽に、<br />もっと直接つながれる<br />EC業界へ。</h2></div><div className="philosophyText"><p>ECの仕事には、運営、広告、制作、物流、商品開発など、たくさんの専門性があります。</p><p>ECplayersは、その経験を持つ人と必要とする企業が、肩書きや会社名に縛られず出会える場所をつくります。</p><strong>まずは「ちょっと話してみる」から。</strong></div></section>
+      <section className={styles.diagnosisBand}>
+        <div className={styles.diagnosisCard}>
+          <div><span className={styles.label}>FREE EC CHECK</span><h2>あなたのEC、まだ伸ばせる。</h2><p>ECサイトのURLを入れるだけ。公開情報から改善ポイントと優先課題を無料でチェックします。</p></div>
+          <a href="/diagnosis">無料で診断する →</a>
+        </div>
+      </section>
 
-      <section className="privacyBlock"><div className="lock">◎</div><div><span>ANONYMOUS BY DESIGN</span><h2>仕事に必要な情報だけ。</h2><p>公開プロフィールに本名・勤務先・住所・電話番号は必要ありません。スキル、経歴、希望条件など、マッチングに必要な情報だけで登録できます。</p></div><div className="privacyItems"><p><b>✓</b> 匿名プロフィール</p><p><b>✓</b> 企業も匿名掲載OK</p><p><b>✓</b> 連絡先は一般公開しない</p></div></section>
+      <section className={styles.manager} id="manager">
+        <div className={styles.managerInner}>
+          <div className={styles.managerCopy}><span className={styles.label}>AI EC MANAGER</span><h2>EC運営に、<br />もう一人のマネージャーを。</h2><p>無料診断の先では、毎日のデータを見て「今日やるべきこと」を提案するAI ECマネージャーへ。自社ECにも、複数クライアントを持つコンサル・代理店にも使える設計を目指します。</p><a href="/ai-manager">詳しく見る →</a></div>
+          <div className={styles.featureGrid}>{features.map(([title, text]) => <article className={styles.feature} key={title}><b>{title}</b><p>{text}</p></article>)}</div>
+        </div>
+      </section>
 
-      <section className="cta"><span>JOIN ECplayers</span><h2>ECの経験と仕事が、<br />ここに集まる。</h2><p>登録も、掲載も、マッチングも無料。まず3分で始められます。</p><div className="actions"><a className="primary light" href="#register">匿名プロフィールを作る →</a><a className="secondary dark" href="#register">相談を掲載する →</a></div></section>
+      <section className={styles.pro} id="pro">
+        <div className={styles.proCard}>
+          <div><span className={styles.label}>HUMAN WHEN NEEDED</span><h2>AIで足りない仕事は、<br />プロへ。</h2><p>ECplayersが人材データベースをゼロから抱えるのではなく、まずAIが課題を具体化。専門家が必要な施策だけ、既存のEC専門家ネットワーク等への連携を検討します。</p><div className={styles.coming}>専門家連携は今後の実装予定です。</div></div>
+          <div className={styles.flow}><div className={styles.flowItem}><span>01</span>AIが課題を発見</div><div className={styles.flowItem}><span>02</span>必要なスキルと業務を定義</div><div className={styles.flowItem}><span>03</span>人が必要かを判断</div><div className={styles.flowItem}><span>04</span>最適な専門家へつなぐ</div></div>
+        </div>
+      </section>
 
-      <footer><a className="logo" href="#">EC<span>players</span></a><span>無料のECビジネスマッチングサイト</span><nav><a href="#about">ECplayersとは</a><a href="#diagnosis">報酬診断</a><a href="#players">プレイヤー</a><a href="#jobs">仕事</a></nav><small>© ECplayers</small></footer>
+      <section className={styles.audience}>
+        <div className={styles.sectionHead}><span className={styles.label}>FOR EVERY EC PLAYER</span><h2>企業だけのツールではありません。</h2></div>
+        <div className={styles.audienceGrid}>
+          <article className={styles.audienceCard}><small>EC BUSINESS</small><h3>EC事業者・ショップ運営者</h3><p>自社の売上改善ポイントを継続的に把握し、次にやることを迷わない。</p></article>
+          <article className={styles.audienceCard}><small>EC TEAM</small><h3>企業のEC担当者</h3><p>複数チャネルの情報を整理して、社内で優先順位を共有しやすくする。</p></article>
+          <article className={styles.audienceCard}><small>EC PROFESSIONAL</small><h3>コンサル・代理店</h3><p>複数クライアントをAIにチェックさせ、見るべき案件へ時間を集中する。</p></article>
+        </div>
+      </section>
+
+      <section className={styles.finalCta}>
+        <span className={styles.label}>START WITH A FREE CHECK</span>
+        <h2>まず、次の一手を<br />見つけよう。</h2>
+        <p>URLを入力して、ECplayersの無料EC診断を試せます。</p>
+        <div className={styles.actions}><a className={styles.primary} href="/diagnosis">無料EC診断を始める →</a><a className={styles.secondary} href="/ai-manager">AI ECマネージャーを見る</a></div>
+      </section>
+
+      <footer className={styles.footer}><a href="/" className={styles.brand}>EC<span>players</span></a><span>売上を伸ばす、次の一手がわかる。</span><nav><a href="/diagnosis">無料診断</a><a href="/ai-manager">AI ECマネージャー</a><a href="/legacy">旧サイト</a></nav><span className={styles.operator}>運営：まんがびと</span></footer>
     </main>
   )
 }
