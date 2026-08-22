@@ -1,0 +1,52 @@
+name: Firebase App Hosting readiness
+
+on:
+  push:
+    branches:
+      - migration/firebase-only
+    paths:
+      - 'package.json'
+      - 'app/**'
+      - 'public/**'
+      - 'tsconfig.json'
+      - 'next-env.d.ts'
+      - 'apphosting.yaml'
+      - '.github/workflows/firebase-app-hosting-readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: migration/firebase-only
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package.json
+
+      - name: Install dependencies and create lockfile
+        run: npm install
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Commit package-lock.json for App Hosting
+        run: |
+          if git diff --quiet -- package-lock.json && git ls-files --error-unmatch package-lock.json >/dev/null 2>&1; then
+            echo 'package-lock.json already up to date.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package-lock.json
+          git commit -m 'Add lockfile required for Firebase App Hosting'
+          git push origin HEAD:migration/firebase-only
