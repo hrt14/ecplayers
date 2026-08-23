@@ -1,0 +1,22 @@
+name: Cloudflare readiness
+
+on:
+  push:
+    branches:
+      - migration/cloudflare-workers
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build for Cloudflare Workers
+        run: npm run cf-build
+      - name: Validate Worker bundle
+        run: npx wrangler deploy --dry-run
