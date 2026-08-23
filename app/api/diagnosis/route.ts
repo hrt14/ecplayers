@@ -78,8 +78,14 @@ async function assertPublicUrl(url: URL) {
     if (isPrivateAddress(host)) throw new Error('公開サイトのURLを入力してください。')
     return
   }
-  const addresses = await dns.lookup(host, { all: true, verbatim: true })
-  if (!addresses.length || addresses.some(x => isPrivateAddress(x.address))) throw new Error('公開サイトのURLを入力してください。')
+
+  // Cloudflare Workers の node:dns は lookup() 未実装のため、A/AAAA を明示的に解決する。
+  const [v4, v6] = await Promise.allSettled([dns.resolve4(host), dns.resolve6(host)])
+  const addresses = [
+    ...(v4.status === 'fulfilled' ? v4.value : []),
+    ...(v6.status === 'fulfilled' ? v6.value : []),
+  ]
+  if (!addresses.length || addresses.some(isPrivateAddress)) throw new Error('公開サイトのURLを入力してください。')
 }
 
 async function fetchHtml(start: URL) {
