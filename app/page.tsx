@@ -51,6 +51,16 @@ const apps = [
     href: '/hub',
     action: '試作を見る →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '06',
+    title: '楽天 限界利益計算機',
+    description: '限界利益・限界ROAS・限界広告費率を商品単位で計算し、RPPをどこまで攻められるか判断。',
+    tags: ['楽天', 'RPP', '利益計算'],
+    href: '/rakuten-margin',
+    action: '今すぐ計算する →',
+  },
 ]
 
 const categories = [
