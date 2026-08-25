@@ -214,7 +214,7 @@ export default function AmazonReviewFollow() {
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <nav className={styles.nav}>
-          <a href="/#apps">アプリ一覧</a>
+          <a href="/#tools">アプリ一覧</a>
           <a href="/trademarks">第三者商標</a>
           <a href="/">トップへ戻る</a>
         </nav>
