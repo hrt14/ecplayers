@@ -71,6 +71,16 @@ const apps = [
     href: '/roadmap-maker',
     action: 'ロードマップを作る →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '08',
+    title: 'Meta広告 はじめて設定ナビ',
+    description: '読むだけの手順書ではなく、今やる1手だけを表示。Meta広告の初期設定と計測確認を最後まで進める。',
+    tags: ['Meta広告', '初期設定', '計測'],
+    href: '/meta-setup',
+    action: '設定をはじめる →',
+  },
 ]
 
 const categories = [
