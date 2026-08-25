@@ -81,6 +81,16 @@ const apps = [
     href: '/meta-setup',
     action: '設定をはじめる →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '09',
+    title: '自社EC 導入ツール診断',
+    description: 'URLからGA4・GTM・Clarityなどの導入痕跡を確認し、次に入れるべき計測・改善ツールを整理。',
+    tags: ['自社EC', 'GA4', 'Clarity'],
+    href: '/site-stack-check',
+    action: '導入状況をチェック →',
+  },
 ]
 
 const categories = [
