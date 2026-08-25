@@ -65,12 +65,12 @@ jobs:
             sleep 2
           done
           test -n "$HTML"
-          echo "$HTML" | grep -q 'ECの面倒を'
-          echo "$HTML" | grep -q 'アプリにする'
+          echo "$HTML" | grep -q 'ECの売上改善に使う'
+          echo "$HTML" | grep -q '無料ツール集'
           AMAZON_HTML="$(curl -fsSL "$PREVIEW_URL/amazon-margin")"
           echo "$AMAZON_HTML" | grep -q 'Amazon'
           echo "$AMAZON_HTML" | grep -q '限界ROAS'
           THUMBNAIL_HTML="$(curl -fsSL "$PREVIEW_URL/thumbnail-checker")"
           echo "$THUMBNAIL_HTML" | grep -q '自社だけ弱い理由'
           echo "$THUMBNAIL_HTML" | grep -q 'SEARCH THUMBNAIL CHECKER'
-          echo "Verified ECP concept, Amazon margin calculator, and thumbnail checker UI on $PREVIEW_URL"
+          echo "Verified user-facing ECP homepage and key tools on $PREVIEW_URL"
