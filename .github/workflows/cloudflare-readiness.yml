@@ -43,7 +43,17 @@ jobs:
         if: github.ref == 'refs/heads/main' && steps.cloudflare-auth.outputs.ready != 'true'
         run: |
           set -o pipefail
+          set +e
           npx wrangler deploy --temporary --config wrangler.preview.jsonc 2>&1 | tee temporary-deploy.log
+          DEPLOY_EXIT=${PIPESTATUS[0]}
+          set -e
+          if [ "$DEPLOY_EXIT" -ne 0 ]; then
+            if grep -qi 'exceeded.*size limit\|exceeded the size limit' temporary-deploy.log; then
+              echo "::warning::Temporary Cloudflare preview could not be published because the anonymous preview account size limit was exceeded. Build and wrangler dry-run already passed."
+              exit 0
+            fi
+            exit "$DEPLOY_EXIT"
+          fi
           PREVIEW_URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' temporary-deploy.log | tail -n 1)"
           test -n "$PREVIEW_URL"
           echo "Preview URL: $PREVIEW_URL"
