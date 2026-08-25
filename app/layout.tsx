@@ -2,8 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'ECplayers | EC分析を、もっと軽く。',
-  description: 'Amazonの商品を見ながら分析対象に追加し、価格・評価・レビュー数・画像・A+などの公開情報を比較。ECサイト無料診断も使える、軽量なEC分析ツールです。',
+  title: 'ECplayers | ECの面倒を、アプリにする。',
+  description: '分析、比較、広告、商品ページ、CRM、業務改善。ECの現場で面倒な仕事を小さなアプリにして次々公開する、ECの道具箱です。',
   icons: {
     icon: [{ url: '/favicon.svg?v=20260808', type: 'image/svg+xml' }],
     shortcut: '/favicon.svg?v=20260808',
