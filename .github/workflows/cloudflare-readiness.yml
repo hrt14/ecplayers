@@ -43,7 +43,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && steps.cloudflare-auth.outputs.ready != 'true'
         run: |
           set -o pipefail
-          npx wrangler deploy --temporary 2>&1 | tee temporary-deploy.log
+          npx wrangler deploy --temporary --config wrangler.preview.jsonc 2>&1 | tee temporary-deploy.log
           PREVIEW_URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' temporary-deploy.log | tail -n 1)"
           test -n "$PREVIEW_URL"
           echo "Preview URL: $PREVIEW_URL"
@@ -60,4 +60,7 @@ jobs:
           AMAZON_HTML="$(curl -fsSL "$PREVIEW_URL/amazon-margin")"
           echo "$AMAZON_HTML" | grep -q 'Amazon'
           echo "$AMAZON_HTML" | grep -q '限界ROAS'
-          echo "Verified ECP concept and Amazon margin calculator on $PREVIEW_URL"
+          THUMBNAIL_HTML="$(curl -fsSL "$PREVIEW_URL/thumbnail-checker")"
+          echo "$THUMBNAIL_HTML" | grep -q '自社だけ弱い理由'
+          echo "$THUMBNAIL_HTML" | grep -q 'SEARCH THUMBNAIL CHECKER'
+          echo "Verified ECP concept, Amazon margin calculator, and thumbnail checker UI on $PREVIEW_URL"
