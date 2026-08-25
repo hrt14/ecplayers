@@ -121,6 +121,16 @@ const apps = [
     href: '/rakuten-lp-check',
     action: 'LPをチェックする →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '13',
+    title: 'Amazon広告 伸びしろ発見機',
+    description: '検索語句レポートから無駄広告費と勝ち筋を発見。バルクCSVでブランド広告・自社ブランド・自社ASIN防御の抜けも診断。',
+    tags: ['Amazon', '広告', '無料'],
+    href: '/amazon-ads-growth',
+    action: '今すぐ診断 →',
+  },
 ]
 
 const categories = [
