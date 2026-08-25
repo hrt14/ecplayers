@@ -12,13 +12,13 @@ export default function DiagnosisPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a className={styles.brand} href="/">EC<span>players</span></a>
-        <a className={styles.back} href="/#apps">アプリ一覧へ戻る</a>
+        <a className={styles.back} href="/#tools">無料ツール一覧へ戻る</a>
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.badge}>ECP APP 01 / FREE EC SITE CHECK</div>
+        <div className={styles.badge}>無料 ECサイト診断</div>
         <h1>あなたのEC、<br /><em>どこを直せば伸びる？</em></h1>
-        <p className={styles.lead}>ECサイトのURLを入れるだけ。公開ページを読み取り、検索流入・商品ページ・購入導線をルールベースで自動チェックします。</p>
+        <p className={styles.lead}>ECサイトのURLを入れるだけ。公開ページを読み取り、検索流入・商品ページ・購入導線を自動チェックします。</p>
         <DiagnosisClient />
         <div className={styles.safetyLine}>
           <span>✓ 登録不要で診断</span>
@@ -29,7 +29,7 @@ export default function DiagnosisPage() {
 
       <section className={styles.explain}>
         <div className={styles.explainHead}>
-          <span>WHAT IT CHECKS</span>
+          <span>診断するポイント</span>
           <h2>「数字を見る前」に直せることを、まず洗い出す。</h2>
         </div>
         <div className={styles.featureGrid}>
@@ -40,11 +40,11 @@ export default function DiagnosisPage() {
       </section>
 
       <section className={styles.roadmap}>
-        <div><span>ECP APPS</span><h2>これは、ECPの<br />最初の1アプリ。</h2></div>
-        <p>ECplayersでは、診断、比較、広告、商品ページ、CRM、業務自動化など、ECの実務で繰り返す面倒な作業を小さなアプリにして追加していきます。この診断も、使われるほど改善し、必要な場所だけAIや継続機能を足していきます。</p>
+        <div><span>NEXT STEP</span><h2>課題が見つかったら、<br />次の改善へ。</h2></div>
+        <p>商品ページの改善、GA4の設定、Clarityでの行動確認、売上アップ施策の洗い出しなど、診断後に使える無料ツールも用意しています。必要なものから1つずつ使ってください。</p>
       </section>
 
-      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/#apps">アプリ一覧</a><a href="/company">運営：株式会社まんがびと</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><small>© 株式会社まんがびと</small></footer>
+      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/#tools">無料ツール一覧</a><a href="/company">運営：株式会社まんがびと</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><small>© 株式会社まんがびと</small></footer>
     </main>
   )
 }
