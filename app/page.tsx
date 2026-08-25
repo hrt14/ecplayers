@@ -1,21 +1,62 @@
 import styles from './Home.module.css'
 
-const compareRows = [
-  ['価格', '¥12,980', '¥9,980', '¥14,800'],
-  ['評価', '4.2', '4.4', '4.0'],
-  ['レビュー数', '382', '2,140', '690'],
-  ['画像枚数', '6', '8', '7'],
-  ['動画', 'なし', 'あり', 'あり'],
-  ['A+', 'あり', 'あり', 'なし'],
+const apps = [
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '01',
+    title: 'ECサイト診断',
+    description: 'URLを入れるだけで、SEO・商品情報・購入導線などを公開ページからチェック。',
+    tags: ['自社EC', '診断', '無料'],
+    href: '/diagnosis',
+    action: '今すぐ使う →',
+  },
+  {
+    status: 'BUILDING',
+    tone: 'building',
+    number: '02',
+    title: '商品比較',
+    description: '商品ページを見ながら自社・競合を追加し、価格・評価・レビュー数・画像などを横並び比較。',
+    tags: ['Amazon', '競合比較', 'Chrome拡張'],
+    href: null,
+    action: 'β版 開発中',
+  },
+  {
+    status: 'BUILDING',
+    tone: 'building',
+    number: '03',
+    title: 'AI ECマネージャー',
+    description: '単発の分析を継続運用へ。変化を見つけて、今日やる改善アクションにつなげる構想。',
+    tags: ['AI', '継続改善', '運用'],
+    href: '/ai-manager',
+    action: '構想を見る →',
+  },
+  {
+    status: 'EXPERIMENT',
+    tone: 'experiment',
+    number: '04',
+    title: 'EC案件ハブ',
+    description: 'ECの仕事を探す人と、EC人材を探す企業の探索コストを下げる実験プロダクト。',
+    tags: ['人材', '案件', 'マッチング'],
+    href: '/hub',
+    action: '試作を見る →',
+  },
 ]
 
-const metrics = [
-  ['価格', '表示価格を確認して商品間で比較'],
-  ['評価・レビュー数', '星評価とレビュー件数を横並び'],
-  ['画像・動画', '画像枚数と動画の有無を確認'],
-  ['A+', 'A+コンテンツの有無を確認'],
-  ['商品情報', 'タイトル・箇条書き・ブランド等を整理'],
-  ['バリエーション', '表示されている選択肢を把握'],
+const categories = [
+  ['集客・広告', 'RPP、Amazon広告、流入改善など。'],
+  ['商品ページ', '競合比較、訴求、画像、レビューなど。'],
+  ['計測・分析', 'CVR、アクセス、診断、変化検知など。'],
+  ['CRM・LTV', 'LINE、リピート、顧客育成など。'],
+  ['業務自動化', '毎日の集計・確認・判断を短く。'],
+  ['人材・案件', 'ECの仕事とプレイヤーをつなぐ。'],
+]
+
+const buildLoop = [
+  ['01', '困る', 'ECの実務で「これ面倒だな」を見つける。'],
+  ['02', '小さく作る', 'まず1つの作業だけを速くする。'],
+  ['03', '無料で出す', '説明を読まなくても使える形で公開する。'],
+  ['04', '育てる', '本当に使われるものだけ、AIや継続機能を足す。'],
 ]
 
 export default function Home() {
@@ -24,134 +65,137 @@ export default function Home() {
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <nav className={styles.nav}>
-          <a href="#extension">商品比較</a>
-          <a href="/diagnosis">ECサイト診断</a>
-          <a href="#future">今後の機能</a>
+          <a href="#apps">アプリ</a>
+          <a href="#concept">コンセプト</a>
+          <a href="#categories">カテゴリ</a>
+          <a href="/hub">EC案件</a>
           <a href="/company">会社概要</a>
-          <a className={styles.navCta} href="/diagnosis">無料診断を使う</a>
+          <a className={styles.navCta} href="/diagnosis">無料アプリを使う</a>
         </nav>
       </header>
 
-      <section className={styles.hero} id="extension">
+      <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <div className={styles.eyebrow}>ECplayers PRODUCT COMPARE / BETA BUILDING</div>
-          <h1>商品比較を、<br /><em>もっと軽く。</em></h1>
-          <p className={styles.heroLead}>Amazon.co.jpの商品ページに対応予定。現在表示している商品ページをユーザー操作でチェックし、価格、評価、レビュー件数、画像枚数、A+の有無などを整理して、複数商品を並べて比較します。</p>
-          <div className={styles.promiseRow}>
-            <span>現在のページだけ</span><span>自動巡回なし</span><span>AIなしで定量分析</span><span>ユーザー操作起点</span>
+          <div className={styles.eyebrow}>ECP / EC APP PLATFORM</div>
+          <h1>ECの面倒を、<br /><em>アプリにする。</em></h1>
+          <p className={styles.heroLead}>分析、比較、広告、商品ページ、CRM、業務改善。ECの現場で「毎回これやるの面倒だな」と思うことを、小さなアプリにして次々公開していきます。</p>
+          <div className={styles.heroActions}>
+            <a className={styles.primary} href="#apps">アプリを見る →</a>
+            <a className={styles.secondary} href="/diagnosis">まずECサイトを無料診断</a>
           </div>
-          <div className={styles.actions}>
-            <span className={styles.buildingButton}>Chrome拡張 β版 開発中</span>
+          <div className={styles.heroPoints}>
+            <span><b>FREE FIRST</b> まず無料で使える</span>
+            <span><b>SMALL APPS</b> 1アプリ1課題</span>
+            <span><b>KEEP SHIPPING</b> 役立つものを増やす</span>
           </div>
-          <p className={styles.micro}>β版は、必要最小限の情報だけをユーザー操作で確認する設計です。まずは軽く、速く、分かりやすく。</p>
         </div>
 
-        <div className={styles.extensionMock} aria-label="Chrome拡張の商品比較画面イメージ">
-          <div className={styles.mockChrome}>
-            <div className={styles.dots}><i/><i/><i/></div>
-            <span>Amazon.co.jp 商品ページ</span>
-            <b>ECplayers</b>
-          </div>
-          <div className={styles.currentProduct}>
-            <div><small>いま見ている商品</small><strong>ワイヤレスイヤホン 商品A</strong><span>¥12,980 ・ ★4.2 ・ 382 reviews</span></div>
-            <button>＋ 分析対象に追加</button>
-          </div>
-          <div className={styles.listHead}><strong>比較リスト</strong><span>3商品</span></div>
-          <div className={styles.productList}>
-            <article><b className={styles.own}>自社</b><div><strong>商品A</strong><span>¥12,980 / ★4.2</span></div><em>×</em></article>
-            <article><b>競合</b><div><strong>商品B</strong><span>¥9,980 / ★4.4</span></div><em>×</em></article>
-            <article><b>競合</b><div><strong>商品C</strong><span>¥14,800 / ★4.0</span></div><em>×</em></article>
-          </div>
-          <div className={styles.compareButton}>3商品を比較する →</div>
+        <div className={styles.appStack} aria-label="ECPのアプリイメージ">
+          <article className={styles.stackMain}>
+            <div className={styles.stackTop}><span>LIVE APP</span><b>01</b></div>
+            <strong>ECサイト診断</strong>
+            <p>URLを入れて、改善ポイントをチェック。</p>
+            <div className={styles.score}><span>EC SCORE</span><b>72</b><small>/100</small></div>
+            <a href="/diagnosis">無料で診断する →</a>
+          </article>
+          <article className={styles.stackSub}><span>02</span><div><small>BUILDING</small><strong>商品比較</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>03</span><div><small>BUILDING</small><strong>AI ECマネージャー</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>04</span><div><small>EXPERIMENT</small><strong>EC案件ハブ</strong></div><b>→</b></article>
         </div>
       </section>
 
-      <section className={styles.flowStrip}>
-        <div><b>01</b><span>商品ページを見る</span></div>
-        <i>→</i><div><b>02</b><span>分析対象に追加</span></div>
-        <i>→</i><div><b>03</b><span>競合も追加</span></div>
-        <i>→</i><div><b>04</b><span>まとめて比較</span></div>
+      <section className={styles.manifesto} id="concept">
+        <div><span className={styles.label}>NEW CONCEPT</span><h2>ECの「ちょっと面倒」を、<br />ひとつずつ消していく。</h2></div>
+        <div className={styles.manifestoText}>
+          <p>ECPは、大きな業務システムを最初から作る場所ではありません。</p>
+          <p>現場で困る瞬間ごとに、小さく、すぐ使えるアプリを作る。使われるものだけを育て、必要になったところにAIを足す。</p>
+          <strong>ECで困ったら、とりあえずECPを見る。</strong>
+          <p>そんな「ECの道具箱」を目指します。</p>
+        </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.appsSection} id="apps">
         <div className={styles.sectionHead}>
-          <span className={styles.label}>WHAT IT CHECKS</span>
-          <h2>まずは、数字だけで<br />十分わかることから。</h2>
-          <p>最初からAIに考えさせません。現在ブラウザに表示されている情報のうち、比較に必要な項目をユーザー操作で確認し、普通のコードで整理・比較します。</p>
+          <div><span className={styles.label}>APPS</span><h2>使えるものから、<br />どんどん増やす。</h2></div>
+          <p>完成するまで隠しません。小さく公開し、実際に役立つかを見ながら改善します。</p>
         </div>
-        <div className={styles.metricGrid}>
-          {metrics.map(([title, body]) => <article key={title}><div>✓</div><h3>{title}</h3><p>{body}</p></article>)}
+
+        <div className={styles.appGrid}>
+          {apps.map((app) => (
+            <article className={styles.appCard} key={app.title}>
+              <div className={styles.appTop}>
+                <span className={`${styles.status} ${styles[app.tone]}`}>{app.status}</span>
+                <b>{app.number}</b>
+              </div>
+              <h3>{app.title}</h3>
+              <p>{app.description}</p>
+              <div className={styles.tags}>{app.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+              {app.href ? <a href={app.href}>{app.action}</a> : <span className={styles.disabled}>{app.action}</span>}
+            </article>
+          ))}
+          <article className={`${styles.appCard} ${styles.nextCard}`}>
+            <div className={styles.plus}>＋</div>
+            <h3>次のECアプリ</h3>
+            <p>広告、商品ページ、CVR、CRM、集計、自動化。実務で必要になったものから追加していきます。</p>
+            <span className={styles.disabled}>COMING NEXT</span>
+          </article>
         </div>
       </section>
 
-      <section className={styles.compareSection}>
-        <div className={styles.compareCopy}>
-          <span className={styles.label}>MULTI PRODUCT COMPARE</span>
-          <h2>気になる商品を、<br />どんどん入れる。</h2>
-          <p>自社・競合・参考商品として比較リストに追加。複数商品が入ったら、同じ指標で横並びにします。</p>
-          <div className={styles.tagExample}><span>自社商品</span><span>競合商品</span><span>参考商品</span></div>
+      <section className={styles.categories} id="categories">
+        <div className={styles.sectionHead}>
+          <div><span className={styles.label}>CATEGORIES</span><h2>ECの仕事を、<br />アプリ単位に分解する。</h2></div>
+          <p>モール、自社EC、広告、CRMをまたいで、「やること」単位で道具を揃えていきます。</p>
         </div>
-        <div className={styles.tableCard}>
-          <div className={styles.tableHead}><b>指標</b><b>自社 A</b><b>競合 B</b><b>競合 C</b></div>
-          {compareRows.map(row => <div className={styles.tableRow} key={row[0]}>{row.map((cell, i) => i === 0 ? <strong key={cell}>{cell}</strong> : <span key={`${row[0]}-${cell}`}>{cell}</span>)}</div>)}
-          <div className={styles.tableNote}>※ 画面イメージ。実際の取得項目はβ版で調整します。</div>
+        <div className={styles.categoryGrid}>
+          {categories.map(([title, body], index) => (
+            <article key={title}><b>{String(index + 1).padStart(2, '0')}</b><h3>{title}</h3><p>{body}</p></article>
+          ))}
         </div>
       </section>
 
-      <section className={styles.principles}>
-        <div className={styles.sectionHead}><span className={styles.label}>PRIVACY & DATA DESIGN</span><h2>勝手に集めない。<br />必要なものだけ。</h2></div>
-        <div className={styles.principleGrid}>
-          <article><b>01</b><h3>現在のページだけ</h3><p>ユーザーが操作した時点で表示している商品ページを対象にします。サイト全体を自動巡回する用途にはしません。</p></article>
-          <article><b>02</b><h3>ユーザー操作起点</h3><p>「分析対象に追加」など、ユーザーが明示的に操作したときだけチェックする設計です。</p></article>
-          <article><b>03</b><h3>原文・画像をためない</h3><p>初期版ではHTML、商品画像、レビュー本文そのものを当社サーバーへ保存せず、比較に必要な定量情報を中心に扱う方針です。</p></article>
-          <article><b>04</b><h3>必要最小限の権限</h3><p>Chrome拡張では機能提供に必要な範囲の権限だけを求め、取得内容と利用目的を明示します。</p></article>
+      <section className={styles.loopSection}>
+        <div className={styles.sectionHead}>
+          <div><span className={styles.label}>HOW ECP GROWS</span><h2>作って、使って、<br />残ったものを育てる。</h2></div>
+          <p>機能の多さではなく、ECの仕事が本当に短くなるかを基準にします。</p>
         </div>
-        <div className={styles.legalNote}>
-          <strong>第三者サービスについて</strong>
-          <p>ECplayersは株式会社まんがびとが独自に開発・運営するサービスです。Amazon、Amazon.co.jpおよび関連する名称・商標はAmazon.com, Inc.またはその関連会社に帰属します。ECplayersはAmazon.com, Inc.またはその関連会社との提携・承認・後援関係にはありません。</p>
-          <div><a href="/terms">利用規約</a><a href="/privacy">プライバシーポリシー</a><a href="/trademarks">第三者商標について</a></div>
+        <div className={styles.loopGrid}>
+          {buildLoop.map(([num, title, body]) => <article key={num}><b>{num}</b><h3>{title}</h3><p>{body}</p></article>)}
         </div>
       </section>
 
-      <section className={styles.webTool}>
+      <section className={styles.aiSection}>
         <div>
-          <span className={styles.liveBadge}>LIVE</span>
-          <span className={styles.label}>WEB TOOL</span>
-          <h2>ECサイト診断は、<br />今すぐ使えます。</h2>
-          <p>自社ECのURLを入れると、SEO・商品情報・購入導線など、公開ページから確認できる情報を無料で定量診断します。</p>
-          <a href="/diagnosis">ECサイトを無料診断する →</a>
+          <span className={styles.label}>AI WHEN IT HELPS</span>
+          <h2>AIありきにしない。<br />便利になる場所だけAI化。</h2>
+          <p>単純な比較や集計は普通のコードで速く。意味理解、提案、継続監視など、AIが効くところだけAIを使います。</p>
+          <a href="/ai-manager">AI ECマネージャー構想を見る →</a>
         </div>
-        <div className={styles.webScore}>
-          <small>EC SITE CHECK</small><strong>72</strong><span>/100</span>
-          <ul><li>SEO基本設定 <b>○</b></li><li>商品情報 <b>△</b></li><li>購入導線 <b>○</b></li><li>画像alt <b>54%</b></li></ul>
+        <div className={styles.aiFlow}>
+          <article><span>STEP 1</span><strong>単発ツール</strong><p>診断・比較・チェック</p></article>
+          <i>→</i>
+          <article><span>STEP 2</span><strong>保存・履歴</strong><p>前回との差を見る</p></article>
+          <i>→</i>
+          <article><span>STEP 3</span><strong>AI運用</strong><p>次の一手を出す</p></article>
         </div>
       </section>
 
-      <section className={styles.future} id="future">
-        <div className={styles.sectionHead}><span className={styles.label}>ONLY WHEN NEEDED</span><h2>便利になった先で、<br />AIを足す。</h2><p>ECplayersの最初の価値は「比較が速い」こと。利用が増えて、本当に欲しい分析が見えたら高度化します。</p></div>
-        <div className={styles.futureFlow}>
-          <article className={styles.nowCard}><small>NOW</small><h3>無料・定量比較</h3><p>商品を追加して、価格・評価・レビュー・画像・A+などを比較。</p></article>
-          <i>→</i>
-          <article><small>NEXT</small><h3>保存・履歴</h3><p>比較セットを保存し、前回との差分や変化を確認。</p></article>
-          <i>→</i>
-          <article><small>LATER</small><h3>AI分析</h3><p>レビュー内容や画像訴求など、意味理解が必要な部分だけAIで深掘り。</p></article>
-          <i>→</i>
-          <article><small>FUTURE</small><h3>AI ECマネージャー</h3><p>許可された方法で取得できるデータを活用し、「今日やること」の提示へつなげます。</p></article>
-        </div>
+      <section className={styles.workSection}>
+        <div><span className={styles.label}>ECP WORK</span><h2>ツールで解けない仕事は、<br />人につなぐ。</h2><p>アプリで自己解決できることを増やし、それでも人の経験が必要な仕事は、EC案件・人材の仕組みへつなげていきます。</p></div>
+        <a href="/hub">EC案件ハブの試作を見る →</a>
       </section>
 
       <section className={styles.finalCta}>
-        <span className={styles.label}>ECplayers</span>
-        <h2>EC分析を、<br />もっと軽く。</h2>
-        <p>Chrome拡張はβ版を開発中。ECサイト診断は今すぐ無料で使えます。</p>
-        <div className={styles.actions}><span className={styles.buildingButton}>Chrome拡張 β版 開発中</span><a className={styles.secondaryDark} href="/diagnosis">ECサイト診断を使う →</a></div>
+        <span className={styles.label}>START WITH ONE APP</span>
+        <h2>まず1個、<br />仕事を軽くする。</h2>
+        <p>ECサイト診断は今すぐ無料で使えます。ECPのアプリは、ここから増えていきます。</p>
+        <div className={styles.heroActions}><a className={styles.primaryLight} href="/diagnosis">ECサイトを無料診断 →</a><a className={styles.secondaryDark} href="#apps">アプリ一覧を見る</a></div>
       </section>
 
       <footer className={styles.footer}>
-        <a href="/" className={styles.brand}>EC<span>players</span></a>
-        <span>EC分析を、もっと軽く。</span>
-        <nav><a href="#extension">商品比較</a><a href="/diagnosis">ECサイト診断</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a></nav>
-        <a className={styles.operator} href="/company">運営：株式会社まんがびと</a>
+        <div className={styles.footerBrand}><a href="/" className={styles.brand}>EC<span>players</span></a><p>ECの面倒を、アプリにする。</p></div>
+        <nav><a href="#apps">アプリ</a><a href="/hub">EC案件</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a></nav>
+        <small>運営：株式会社まんがびと</small>
       </footer>
     </main>
   )
