@@ -3,7 +3,9 @@ name: Cloudflare readiness
 on:
   push:
     branches:
+      - main
       - migration/cloudflare-workers
+  workflow_dispatch:
 
 jobs:
   build:
