@@ -55,8 +55,8 @@ function getShopName(html: string, fallback: string | null) {
   if (!title) return fallback
   return decodeBasicEntities(title)
     .replace(/^【楽天市場】/, '')
-    .replace(/の通販.*$/u, '')
-    .replace(/楽天市場店.*$/u, '楽天市場店')
+    .replace(/の通販.*$/, '')
+    .replace(/楽天市場店.*$/, '楽天市場店')
     .trim() || fallback
 }
 
