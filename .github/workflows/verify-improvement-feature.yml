@@ -1,0 +1,22 @@
+name: Verify improvement feature
+
+on:
+  push:
+    branches:
+      - feature/global-improvement-box
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run cf-build
+      - run: npx wrangler deploy --dry-run
