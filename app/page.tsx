@@ -91,6 +91,16 @@ const apps = [
     href: '/ga4-report-setup',
     action: '10分で設定する →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '10',
+    title: '売上の伸びしろ発見機',
+    description: '商品数・広告・LP・客単価・レビュー・メルマガ・リピートまで、72項目から未実施の売上施策を発見。',
+    tags: ['売上改善', '店舗診断', '無料'],
+    href: '/growth-finder',
+    action: '伸びしろを見つける →',
+  },
 ]
 
 const categories = [
