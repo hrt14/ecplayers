@@ -44,7 +44,7 @@ export default function HubPage() {
 
       <section className={styles.stickyCta}>
         <div><small>ECP EXPERIMENT</small><strong>ツールで解けない仕事は、人につなぐ。</strong></div>
-        <a href="/#apps">アプリ一覧へ</a>
+        <a href="/#apps" style={{ flex: '0 0 auto', padding: '12px 16px', borderRadius: 12, background: '#fff', color: '#111827', fontSize: 12, fontWeight: 800, whiteSpace: 'nowrap' }}>アプリ一覧へ</a>
       </section>
     </main>
   )
