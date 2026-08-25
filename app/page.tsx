@@ -131,6 +131,16 @@ const apps = [
     href: '/amazon-ads-growth',
     action: '今すぐ診断 →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '14',
+    title: 'Amazon広告 除外発見機',
+    description: '検索語句レポートから、十分クリックされたのに成果が弱い検索語句を抽出。除外するものだけ選んでCSV化。',
+    tags: ['Amazon', '広告', '除外キーワード'],
+    href: '/amazon-negative-finder',
+    action: '除外候補を見つける →',
+  },
 ]
 
 const categories = [
