@@ -12,9 +12,19 @@ const apps = [
     action: '今すぐ使う →',
   },
   {
+    status: 'LIVE',
+    tone: 'live',
+    number: '02',
+    title: '検索サムネイル改善発見',
+    description: '楽天・Amazon・Yahoo!の検索結果スクショから、自社商品の弱い見え方と改善点をAI比較。',
+    tags: ['楽天', 'Amazon', '画像改善'],
+    href: '/thumbnail-checker',
+    action: '無料で比較する →',
+  },
+  {
     status: 'BUILDING',
     tone: 'building',
-    number: '02',
+    number: '03',
     title: '商品比較',
     description: '商品ページを見ながら自社・競合を追加し、価格・評価・レビュー数・画像などを横並び比較。',
     tags: ['Amazon', '競合比較', 'Chrome拡張'],
@@ -24,7 +34,7 @@ const apps = [
   {
     status: 'BUILDING',
     tone: 'building',
-    number: '03',
+    number: '04',
     title: 'AI ECマネージャー',
     description: '単発の分析を継続運用へ。変化を見つけて、今日やる改善アクションにつなげる構想。',
     tags: ['AI', '継続改善', '運用'],
@@ -34,7 +44,7 @@ const apps = [
   {
     status: 'EXPERIMENT',
     tone: 'experiment',
-    number: '04',
+    number: '05',
     title: 'EC案件ハブ',
     description: 'ECの仕事を探す人と、EC人材を探す企業の探索コストを下げる実験プロダクト。',
     tags: ['人材', '案件', 'マッチング'],
@@ -81,7 +91,7 @@ export default function Home() {
           <p className={styles.heroLead}>分析、比較、広告、商品ページ、CRM、業務改善。ECの現場で「毎回これやるの面倒だな」と思うことを、小さなアプリにして次々公開していきます。</p>
           <div className={styles.heroActions}>
             <a className={styles.primary} href="#apps">アプリを見る →</a>
-            <a className={styles.secondary} href="/diagnosis">まずECサイトを無料診断</a>
+            <a className={styles.secondary} href="/thumbnail-checker">検索サムネを無料比較</a>
           </div>
           <div className={styles.heroPoints}>
             <span><b>FREE FIRST</b> まず無料で使える</span>
@@ -92,15 +102,16 @@ export default function Home() {
 
         <div className={styles.appStack} aria-label="ECPのアプリイメージ">
           <article className={styles.stackMain}>
-            <div className={styles.stackTop}><span>LIVE APP</span><b>01</b></div>
-            <strong>ECサイト診断</strong>
-            <p>URLを入れて、改善ポイントをチェック。</p>
-            <div className={styles.score}><span>EC SCORE</span><b>72</b><small>/100</small></div>
-            <a href="/diagnosis">無料で診断する →</a>
+            <div className={styles.stackTop}><span>LIVE APP</span><b>02</b></div>
+            <strong>検索サムネイル改善発見</strong>
+            <p>検索結果スクショから、競合との差をAI比較。</p>
+            <div className={styles.score}><span>IMPROVEMENTS</span><b>5</b><small>件</small></div>
+            <a href="/thumbnail-checker">無料で比較する →</a>
           </article>
-          <article className={styles.stackSub}><span>02</span><div><small>BUILDING</small><strong>商品比較</strong></div><b>→</b></article>
-          <article className={styles.stackSub}><span>03</span><div><small>BUILDING</small><strong>AI ECマネージャー</strong></div><b>→</b></article>
-          <article className={styles.stackSub}><span>04</span><div><small>EXPERIMENT</small><strong>EC案件ハブ</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>01</span><div><small>LIVE</small><strong>ECサイト診断</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>03</span><div><small>BUILDING</small><strong>商品比較</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>04</span><div><small>BUILDING</small><strong>AI ECマネージャー</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>05</span><div><small>EXPERIMENT</small><strong>EC案件ハブ</strong></div><b>→</b></article>
         </div>
       </section>
 
@@ -188,8 +199,8 @@ export default function Home() {
       <section className={styles.finalCta}>
         <span className={styles.label}>START WITH ONE APP</span>
         <h2>まず1個、<br />仕事を軽くする。</h2>
-        <p>ECサイト診断は今すぐ無料で使えます。ECPのアプリは、ここから増えていきます。</p>
-        <div className={styles.heroActions}><a className={styles.primaryLight} href="/diagnosis">ECサイトを無料診断 →</a><a className={styles.secondaryDark} href="#apps">アプリ一覧を見る</a></div>
+        <p>ECサイト診断と検索サムネイル比較は今すぐ無料で使えます。ECPのアプリは、ここから増えていきます。</p>
+        <div className={styles.heroActions}><a className={styles.primaryLight} href="/thumbnail-checker">検索サムネを比較 →</a><a className={styles.secondaryDark} href="#apps">アプリ一覧を見る</a></div>
       </section>
 
       <footer className={styles.footer}>
