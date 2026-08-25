@@ -69,22 +69,25 @@ export default function ClarityGuidePage() {
   const [goal, setGoal] = useState<GoalKey>('cvr')
   const [done, setDone] = useState<number[]>([])
   const [nextFix, setNextFix] = useState('')
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(storageKey)
       if (saved) {
         const parsed = JSON.parse(saved)
-        if (parsed.goal) setGoal(parsed.goal)
+        if (parsed.goal && parsed.goal in goals) setGoal(parsed.goal as GoalKey)
         if (Array.isArray(parsed.done)) setDone(parsed.done)
         if (typeof parsed.nextFix === 'string') setNextFix(parsed.nextFix)
       }
     } catch {}
+    setReady(true)
   }, [])
 
   useEffect(() => {
+    if (!ready) return
     try { window.localStorage.setItem(storageKey, JSON.stringify({ goal, done, nextFix })) } catch {}
-  }, [goal, done, nextFix])
+  }, [goal, done, nextFix, ready])
 
   const current = goals[goal]
   const progress = useMemo(() => Math.round((done.length / current.steps.length) * 100), [done, current.steps.length])
