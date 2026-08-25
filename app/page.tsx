@@ -141,6 +141,16 @@ const apps = [
     href: '/amazon-negative-finder',
     action: '除外候補を見つける →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '15',
+    title: 'Amazon 限界利益計算機',
+    description: '商品ごとの限界利益から、限界ROAS・限界ACOS・限界TACOSと広告費の余力を計算。',
+    tags: ['Amazon', '広告', '利益計算'],
+    href: '/amazon-margin',
+    action: '今すぐ計算する →',
+  },
 ]
 
 const categories = [
