@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import ImprovementBox from './components/ImprovementBox'
 
 export const metadata: Metadata = {
   title: 'ECplayers | ECの面倒を、アプリにする。',
@@ -41,7 +42,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <style dangerouslySetInnerHTML={{ __html: brandLogoStyles }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ImprovementBox />
+      </body>
     </html>
   )
 }
