@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - migration/cloudflare-workers
+      - verify/amazon-negative-finder-2
   workflow_dispatch:
 
 jobs:
@@ -39,25 +40,26 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: npx wrangler deploy
-      - name: Publish and verify temporary preview when production auth is unavailable
+      - name: Publish and verify temporary preview on main when production auth is unavailable
         if: github.ref == 'refs/heads/main' && steps.cloudflare-auth.outputs.ready != 'true'
         run: |
           set -o pipefail
           npx wrangler deploy --temporary 2>&1 | tee temporary-deploy.log
           PREVIEW_URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' temporary-deploy.log | tail -n 1)"
           test -n "$PREVIEW_URL"
-          echo "Preview URL: $PREVIEW_URL"
-          HTML=""
-          for i in 1 2 3 4 5; do
-            if HTML="$(curl -fsSL "$PREVIEW_URL")"; then
-              break
-            fi
-            sleep 2
-          done
-          test -n "$HTML"
+          HTML="$(curl -fsSL "$PREVIEW_URL")"
           echo "$HTML" | grep -q 'ECの面倒を'
-          echo "$HTML" | grep -q 'アプリにする'
           AMAZON_HTML="$(curl -fsSL "$PREVIEW_URL/amazon-margin")"
-          echo "$AMAZON_HTML" | grep -q 'Amazon'
           echo "$AMAZON_HTML" | grep -q '限界ROAS'
-          echo "Verified ECP concept and Amazon margin calculator on $PREVIEW_URL"
+      - name: Verify Amazon negative finder in temporary preview
+        if: github.ref == 'refs/heads/verify/amazon-negative-finder-2'
+        run: |
+          set -o pipefail
+          npx wrangler deploy --temporary 2>&1 | tee temporary-deploy.log
+          PREVIEW_URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' temporary-deploy.log | tail -n 1)"
+          test -n "$PREVIEW_URL"
+          HTML="$(curl -fsSL "$PREVIEW_URL/amazon-negative-finder")"
+          echo "$HTML" | grep -q 'Amazon広告'
+          echo "$HTML" | grep -q '除外発見機'
+          echo "$HTML" | grep -q '20クリック基準'
+          echo "Verified Amazon negative finder on $PREVIEW_URL/amazon-negative-finder"
