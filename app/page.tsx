@@ -81,6 +81,16 @@ const apps = [
     href: '/meta-setup',
     action: '設定をはじめる →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '09',
+    title: 'GA4 定番レポート設定',
+    description: 'ECで見る場所を7つに固定。GA4を開きながら10分で設定でき、完了チェックも保存。',
+    tags: ['GA4', '自社EC', '計測・分析'],
+    href: '/ga4-report-setup',
+    action: '10分で設定する →',
+  },
 ]
 
 const categories = [
