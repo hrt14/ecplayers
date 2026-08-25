@@ -57,11 +57,11 @@ export default function ImprovementBox() {
   return (
     <div className={styles.root}>
       {open && (
-        <section className={styles.panel} aria-label="改善ボックス">
+        <section className={styles.panel} aria-label="ご意見・不具合報告">
           <div className={styles.header}>
             <div>
-              <strong>改善ボックス</strong>
-              <p>気づいたことをそのまま書いてください。</p>
+              <strong>ご意見・不具合報告</strong>
+              <p>使いにくい点や、欲しい機能があれば教えてください。</p>
             </div>
             <button className={styles.close} type="button" onClick={() => setOpen(false)} aria-label="閉じる">×</button>
           </div>
@@ -69,7 +69,7 @@ export default function ImprovementBox() {
           {status === 'sent' ? (
             <div className={styles.sent}>
               <strong>ありがとうございます。</strong>
-              <p>内容を検証し、安全に自動修正できる場合は反映します。</p>
+              <p>今後の改善に活用します。</p>
               <button type="button" onClick={() => setStatus('idle')}>続けて送る</button>
             </div>
           ) : (
@@ -78,15 +78,14 @@ export default function ImprovementBox() {
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
                 maxLength={2000}
-                placeholder="例：このボタンを押しても反応しない／結果画面から戻れない／スマホだと文字が重なる"
-                aria-label="改善内容"
+                placeholder="例：ここが分かりにくい／この機能がほしい／ボタンが反応しない"
+                aria-label="ご意見・不具合内容"
                 disabled={status === 'sending'}
               />
-              <div className={styles.meta}>対象ページ: {page}</div>
               <p className={styles.notice}>個人情報、注文番号、パスワードなどは書かないでください。</p>
               {status === 'error' && <p className={styles.error}>{error}</p>}
               <button className={styles.submit} type="submit" disabled={status === 'sending'}>
-                {status === 'sending' ? '送信中…' : '改善を送る'}
+                {status === 'sending' ? '送信中…' : '送信する'}
               </button>
             </form>
           )}
@@ -101,9 +100,9 @@ export default function ImprovementBox() {
           if (status === 'sent') setStatus('idle')
         }}
         aria-expanded={open}
-        aria-label="改善ボックスを開く"
+        aria-label="ご意見・不具合報告を開く"
       >
-        改善
+        ご意見
       </button>
     </div>
   )

@@ -1,173 +1,73 @@
 import styles from './Home.module.css'
 
-const apps = [
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '01',
-    title: 'ECサイト診断',
-    description: 'URLを入れるだけで、SEO・商品情報・購入導線などを公開ページからチェック。',
-    tags: ['自社EC', '診断', '無料'],
-    href: '/diagnosis',
-    action: '今すぐ使う →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '02',
-    title: '商品ページ増やし方',
-    description: '楽天・Amazonで、既存商品からセット・複数個・用途別などの商品化候補を見つける。',
-    tags: ['楽天', 'Amazon', '商品ページ'],
-    href: '/product-page-growth',
-    action: '今すぐ使う →',
-  },
-  {
-    status: 'BUILDING',
-    tone: 'building',
-    number: '03',
-    title: '商品比較',
-    description: '商品ページを見ながら自社・競合を追加し、価格・評価・レビュー数・画像などを横並び比較。',
-    tags: ['Amazon', '競合比較', 'Chrome拡張'],
-    href: null,
-    action: 'β版 開発中',
-  },
-  {
-    status: 'BUILDING',
-    tone: 'building',
-    number: '04',
-    title: 'AI ECマネージャー',
-    description: '単発の分析を継続運用へ。変化を見つけて、今日やる改善アクションにつなげる構想。',
-    tags: ['AI', '継続改善', '運用'],
-    href: '/ai-manager',
-    action: '構想を見る →',
-  },
-  {
-    status: 'EXPERIMENT',
-    tone: 'experiment',
-    number: '05',
-    title: 'EC案件ハブ',
-    description: 'ECの仕事を探す人と、EC人材を探す企業の探索コストを下げる実験プロダクト。',
-    tags: ['人材', '案件', 'マッチング'],
-    href: '/hub',
-    action: '試作を見る →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '06',
-    title: '楽天 限界利益計算機',
-    description: '限界利益・限界ROAS・限界広告費率を商品単位で計算し、RPPをどこまで攻められるか判断。',
-    tags: ['楽天', 'RPP', '利益計算'],
-    href: '/rakuten-margin',
-    action: '今すぐ計算する →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '07',
-    title: 'ロードマップメーカー',
-    description: '目標年商から月次売上・セッション・CVR・客単価を逆算し、毎月の施策までロードマップ化。',
-    tags: ['計画', 'KPI', '施策管理'],
-    href: '/roadmap-maker',
-    action: 'ロードマップを作る →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '08',
-    title: 'Meta広告 はじめて設定ナビ',
-    description: '読むだけの手順書ではなく、今やる1手だけを表示。Meta広告の初期設定と計測確認を最後まで進める。',
-    tags: ['Meta広告', '初期設定', '計測'],
-    href: '/meta-setup',
-    action: '設定をはじめる →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '09',
-    title: 'GA4 定番レポート設定',
-    description: 'ECで見る場所を7つに固定。GA4を開きながら10分で設定でき、完了チェックも保存。',
-    tags: ['GA4', '自社EC', '計測・分析'],
-    href: '/ga4-report-setup',
-    action: '10分で設定する →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '10',
-    title: '売上の伸びしろ発見機',
-    description: '商品数・広告・LP・客単価・レビュー・メルマガ・リピートまで、72項目から未実施の売上施策を発見。',
-    tags: ['売上改善', '店舗診断', '無料'],
-    href: '/growth-finder',
-    action: '伸びしろを見つける →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '11',
-    title: 'Clarity 超最小利用ナビ',
-    description: 'CVR・客単価・離脱・LPから目的を選ぶだけ。見る場所を3つに絞り、次に直す1個まで決める。',
-    tags: ['Clarity', 'CVR', '計測・分析'],
-    href: '/clarity-min-guide',
-    action: '見る場所を決める →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '12',
-    title: '楽天LPチェッカー',
-    description: '楽天の商品URLから、ターゲット・ベネフィット・比較・使用シーン・根拠・FAQなどLPの不足要素を診断。',
-    tags: ['楽天', 'LP改善', 'CVR'],
-    href: '/rakuten-lp-check',
-    action: 'LPをチェックする →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '13',
-    title: 'Amazon広告 伸びしろ発見機',
-    description: '検索語句レポートから無駄広告費と勝ち筋を発見。バルクCSVでブランド広告・自社ブランド・自社ASIN防御の抜けも診断。',
-    tags: ['Amazon', '広告', '無料'],
-    href: '/amazon-ads-growth',
-    action: '今すぐ診断 →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '14',
-    title: 'Amazon広告 除外発見機',
-    description: '検索語句レポートから、十分クリックされたのに成果が弱い検索語句を抽出。除外するものだけ選んでCSV化。',
-    tags: ['Amazon', '広告', '除外キーワード'],
-    href: '/amazon-negative-finder',
-    action: '除外候補を見つける →',
-  },
-  {
-    status: 'LIVE',
-    tone: 'live',
-    number: '15',
-    title: 'Amazon 限界利益計算機',
-    description: '商品ごとの限界利益から、限界ROAS・限界ACOS・限界TACOSと広告費の余力を計算。',
-    tags: ['Amazon', '広告', '利益計算'],
-    href: '/amazon-margin',
-    action: '今すぐ計算する →',
-  },
+type Tool = {
+  title: string
+  problem: string
+  description: string
+  href: string
+  tags: string[]
+}
+
+const amazonTools: Tool[] = [
+  { title: 'Amazon 限界利益計算機', problem: '広告費、どこまで使っていい？', description: '原価・販売手数料・FBA費用などを入れると、限界利益・限界ROAS・限界TACOSをすぐ計算できます。', href: '/amazon-margin', tags: ['利益', '広告判断'] },
+  { title: 'Amazon広告 除外発見', problem: 'ムダな検索語句を止めたい', description: '広告レポートから、露出やクリックはあるのに成果が弱い検索語句を見つけ、除外候補を整理します。', href: '/amazon-negative-finder', tags: ['広告', '検索語句'] },
+  { title: 'Amazon広告 伸ばせるポイント発見', problem: '広告の次の一手が分からない', description: '自社防御、ブランド広告、無駄な出稿などをチェックし、伸ばせるところと削れるところを整理します。', href: '/amazon-ads-growth', tags: ['広告', '改善診断'] },
+  { title: 'Amazon 商品ページチェック', problem: '商品ページ、何が足りない？', description: '画像・訴求・比較・安心材料など、購入率を上げるために商品ページへ入れたい項目を順番に確認できます。', href: '/amazon-lp-checker', tags: ['商品ページ', 'CVR'] },
+  { title: 'Amazon 低評価レビュー対策', problem: '悪いレビューを売上改善につなげたい', description: '低評価レビューから不安・不満を整理し、商品ページに追加すべき説明やコンテンツ案を作れます。', href: '/amazon-review-follow', tags: ['レビュー', '商品ページ'] },
 ]
 
-const categories = [
-  ['集客・広告', 'RPP、Amazon広告、流入改善など。'],
-  ['商品ページ', '競合比較、訴求、画像、レビューなど。'],
-  ['計測・分析', 'CVR、アクセス、診断、変化検知など。'],
-  ['CRM・LTV', 'LINE、リピート、顧客育成など。'],
-  ['業務自動化', '毎日の集計・確認・判断を短く。'],
-  ['人材・案件', 'ECの仕事とプレイヤーをつなぐ。'],
+const rakutenTools: Tool[] = [
+  { title: '楽天 限界利益計算機', problem: 'RPPをどこまで攻められる？', description: '商品原価やモール費用を入れると、限界利益と広告に使える上限を商品単位で確認できます。', href: '/rakuten-margin', tags: ['利益', 'RPP'] },
+  { title: 'RPPオート キーワード分解', problem: 'オート広告の数字をキーワード別に見たい', description: 'RPPオートのレポートCSVを入れるだけ。混ざったキーワードと数字を分離して、見やすい形に整理できます。', href: '/rpp-auto-keyword', tags: ['RPP', 'CSV'] },
+  { title: '楽天 商品ページチェック', problem: 'ページ改善の抜け漏れをなくしたい', description: '購入前の不安解消・比較・訴求・レビュー活用などを、楽天の商品ページを見ながら順番にチェックできます。', href: '/rakuten-lp-check', tags: ['商品ページ', 'CVR'] },
+  { title: '楽天 低評価レビュー対策', problem: '悪いレビューを放置したくない', description: '低評価レビューから、商品ページで先回りして説明した方がいい内容や改善案を整理できます。', href: '/rakuten-review-follow', tags: ['レビュー', '改善案'] },
+  { title: 'レビュー1件いくら？計算機', problem: 'レビュー施策の費用対効果を知りたい', description: 'レビュー施策にかかった費用と獲得件数から、レビュー1件あたりの実質コストを簡単に計算できます。', href: '/rakurakupon-review-cost', tags: ['レビュー', '費用対効果'] },
 ]
 
-const buildLoop = [
-  ['01', '困る', 'ECの実務で「これ面倒だな」を見つける。'],
-  ['02', '小さく作る', 'まず1つの作業だけを速くする。'],
-  ['03', '無料で出す', '説明を読まなくても使える形で公開する。'],
-  ['04', '育てる', '本当に使われるものだけ、AIや継続機能を足す。'],
+const storeTools: Tool[] = [
+  { title: 'ECサイト無料診断', problem: 'まず、どこを直せばいい？', description: 'URLを入れるだけ。公開ページからSEO・商品情報・購入導線などをチェックし、改善ポイントを整理します。', href: '/diagnosis', tags: ['自社EC', '無料診断'] },
+  { title: '売上アップ施策 発見機', problem: '売上を増やす打ち手を洗い出したい', description: '集客、CVR、客単価、商品数、リピートなどを横断して、まだやれていない売上アップ施策を見つけます。', href: '/growth-finder', tags: ['売上改善', 'チェック'] },
+  { title: '客単価アップ チェックリスト', problem: '客単価をもっと上げたい', description: 'セット販売、まとめ買い、送料無料ラインなど、客単価を上げる施策をチェックし、変更内容も残せます。', href: '/aov-checklist', tags: ['客単価', '施策'] },
+  { title: '商品ページの増やし方', problem: 'アクセスを増やせる商品を増やしたい', description: 'セット、複数個、用途別など、既存商品から新しい商品ページを作る切り口を見つけます。', href: '/product-page-growth', tags: ['楽天', 'Amazon'] },
+  { title: 'GA4 超最小導入ナビ', problem: 'GA4を正しく入れたい', description: 'プロパティ作成からタグ設置、計測確認まで。ECで使える状態にするための必要な手順だけを進めます。', href: '/ga4-setup', tags: ['GA4', '導入'] },
+  { title: 'GA4 定番レポート設定', problem: 'GA4を開いても見る場所が分からない', description: 'ECで見る場所を絞り、GA4を開きながら定番レポートを順番に設定できます。', href: '/ga4-report-setup', tags: ['GA4', '分析'] },
+  { title: 'Clarity 超最小ガイド', problem: 'Clarity、どこを見ればいい？', description: '難しい分析は抜き。CVRや客単価の改善につながる、最低限見る場所だけに絞って案内します。', href: '/clarity-min-guide', tags: ['自社EC', '行動分析'] },
+  { title: 'Meta広告 はじめて設定ナビ', problem: 'Meta広告の初期設定で迷う', description: '長いマニュアルではなく、今やる1手だけを表示。初期設定と計測確認を順番に進められます。', href: '/meta-setup', tags: ['Meta広告', '初期設定'] },
 ]
+
+const managementTools: Tool[] = [
+  { title: '売上ロードマップメーカー', problem: '目標はあるけど、月ごとの数字がない', description: '年商目標から月次売上・セッション・CVR・客単価を逆算し、毎月の施策までロードマップにします。', href: '/roadmap-maker', tags: ['目標設定', 'KPI'] },
+  { title: 'ロードマップ進捗管理', problem: '計画どおり進んでいるか確認したい', description: '実績数字を入れて、目標との差と進捗を確認。次に見るべき指標が分かります。', href: '/roadmap-manager', tags: ['進捗管理', 'KPI'] },
+  { title: '施策効果チェック', problem: 'やった施策、本当に効いた？', description: '施策を実施した日と前後の数字を記録し、セッション・CVR・客単価・売上の変化を振り返れます。', href: '/initiative-log', tags: ['効果検証', 'Amazon・楽天・GA4'] },
+]
+
+const allTools = [...amazonTools, ...rakutenTools, ...storeTools, ...managementTools]
+
+function ToolCard({ tool }: { tool: Tool }) {
+  return (
+    <a className={styles.toolCard} href={tool.href}>
+      <div className={styles.toolProblem}>{tool.problem}</div>
+      <h3>{tool.title}</h3>
+      <p>{tool.description}</p>
+      <div className={styles.toolBottom}>
+        <div className={styles.tags}>{tool.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+        <strong>無料で使う <span>→</span></strong>
+      </div>
+    </a>
+  )
+}
+
+function ToolSection({ id, kicker, title, lead, tools }: { id: string; kicker: string; title: string; lead: string; tools: Tool[] }) {
+  return (
+    <section className={styles.toolSection} id={id}>
+      <div className={styles.sectionHead}>
+        <div><span className={styles.kicker}>{kicker}</span><h2>{title}</h2></div>
+        <p>{lead}</p>
+      </div>
+      <div className={styles.toolGrid}>{tools.map((tool) => <ToolCard key={tool.title} tool={tool} />)}</div>
+    </section>
+  )
+}
 
 export default function Home() {
   return (
@@ -175,136 +75,74 @@ export default function Home() {
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <nav className={styles.nav}>
-          <a href="#apps">アプリ</a>
-          <a href="#concept">コンセプト</a>
-          <a href="#categories">カテゴリ</a>
-          <a href="/hub">EC案件</a>
-          <a href="/company">会社概要</a>
-          <a className={styles.navCta} href="/diagnosis">無料アプリを使う</a>
+          <a href="#amazon">Amazon</a>
+          <a href="#rakuten">楽天</a>
+          <a href="#store">自社EC</a>
+          <a href="#management">計画・効果検証</a>
+          <a href="/company">運営会社</a>
+          <a className={styles.navCta} href="#tools">無料ツール一覧</a>
         </nav>
       </header>
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <div className={styles.eyebrow}>ECP / EC APP PLATFORM</div>
-          <h1>ECの面倒を、<br /><em>アプリにする。</em></h1>
-          <p className={styles.heroLead}>分析、比較、広告、商品ページ、CRM、業務改善。ECの現場で「毎回これやるの面倒だな」と思うことを、小さなアプリにして次々公開していきます。</p>
+          <div className={styles.heroBadge}>Amazon・楽天・自社ECに対応</div>
+          <h1>ECの売上改善に使う、<br /><em>無料ツール集。</em></h1>
+          <p className={styles.heroLead}>広告費の上限計算、ムダ広告の発見、商品ページのチェック、レビュー分析、GA4設定、施策の効果検証まで。<strong>EC担当者が日々やる面倒な作業を、すぐ終わらせる道具をまとめました。</strong></p>
           <div className={styles.heroActions}>
-            <a className={styles.primary} href="#apps">アプリを見る →</a>
-            <a className={styles.secondary} href="/diagnosis">まずECサイトを無料診断</a>
+            <a className={styles.primary} href="#tools">ツールを選ぶ</a>
+            <a className={styles.secondary} href="/diagnosis">まずECサイトを無料診断 →</a>
           </div>
-          <div className={styles.heroPoints}>
-            <span><b>FREE FIRST</b> まず無料で使える</span>
-            <span><b>SMALL APPS</b> 1アプリ1課題</span>
-            <span><b>KEEP SHIPPING</b> 役立つものを増やす</span>
-          </div>
+          <div className={styles.trustRow}><span>✓ 無料で使える</span><span>✓ ブラウザですぐ使える</span><span>✓ EC実務に特化</span></div>
         </div>
 
-        <div className={styles.appStack} aria-label="ECPのアプリイメージ">
-          <article className={styles.stackMain}>
-            <div className={styles.stackTop}><span>LIVE APP</span><b>01</b></div>
-            <strong>ECサイト診断</strong>
-            <p>URLを入れて、改善ポイントをチェック。</p>
-            <div className={styles.score}><span>EC SCORE</span><b>72</b><small>/100</small></div>
-            <a href="/diagnosis">無料で診断する →</a>
-          </article>
-          <article className={styles.stackSub}><span>02</span><div><small>LIVE</small><strong>商品ページ増やし方</strong></div><b>→</b></article>
-          <article className={styles.stackSub}><span>03</span><div><small>BUILDING</small><strong>商品比較</strong></div><b>→</b></article>
-          <article className={styles.stackSub}><span>04</span><div><small>BUILDING</small><strong>AI ECマネージャー</strong></div><b>→</b></article>
+        <div className={styles.heroPanel}>
+          <div className={styles.heroPanelHead}><span>こんな時に使えます</span><b>{allTools.length}ツール</b></div>
+          <a href="/amazon-margin"><span className={styles.heroIcon}>¥</span><div><small>広告費の上限を知りたい</small><strong>Amazon 限界利益計算機</strong></div><b>→</b></a>
+          <a href="/amazon-negative-finder"><span className={styles.heroIcon}>×</span><div><small>ムダ広告を止めたい</small><strong>Amazon広告 除外発見</strong></div><b>→</b></a>
+          <a href="/rakuten-lp-check"><span className={styles.heroIcon}>✓</span><div><small>商品ページを改善したい</small><strong>楽天 商品ページチェック</strong></div><b>→</b></a>
+          <a href="/initiative-log"><span className={styles.heroIcon}>↗</span><div><small>施策が効いたか知りたい</small><strong>施策効果チェック</strong></div><b>→</b></a>
         </div>
       </section>
 
-      <section className={styles.manifesto} id="concept">
-        <div><span className={styles.label}>NEW CONCEPT</span><h2>ECの「ちょっと面倒」を、<br />ひとつずつ消していく。</h2></div>
-        <div className={styles.manifestoText}>
-          <p>ECPは、大きな業務システムを最初から作る場所ではありません。</p>
-          <p>現場で困る瞬間ごとに、小さく、すぐ使えるアプリを作る。使われるものだけを育て、必要になったところにAIを足す。</p>
-          <strong>ECで困ったら、とりあえずECPを見る。</strong>
-          <p>そんな「ECの道具箱」を目指します。</p>
+      <section className={styles.quickPick} id="tools">
+        <div className={styles.quickIntro}><span className={styles.kicker}>やりたいことから選ぶ</span><h2>今の困りごとは？</h2></div>
+        <div className={styles.quickGrid}>
+          <a href="#amazon"><span>01</span><strong>Amazonを改善したい</strong><p>広告・利益・商品ページ・レビュー</p><b>→</b></a>
+          <a href="#rakuten"><span>02</span><strong>楽天を改善したい</strong><p>RPP・利益・商品ページ・レビュー</p><b>→</b></a>
+          <a href="#store"><span>03</span><strong>自社ECを改善したい</strong><p>サイト診断・GA4・Clarity・Meta広告</p><b>→</b></a>
+          <a href="#management"><span>04</span><strong>数字と施策を管理したい</strong><p>目標・進捗・効果検証</p><b>→</b></a>
         </div>
       </section>
 
-      <section className={styles.appsSection} id="apps">
-        <div className={styles.sectionHead}>
-          <div><span className={styles.label}>APPS</span><h2>使えるものから、<br />どんどん増やす。</h2></div>
-          <p>完成するまで隠しません。小さく公開し、実際に役立つかを見ながら改善します。</p>
-        </div>
+      <ToolSection id="amazon" kicker="Amazon" title="Amazonの売上・広告を改善" lead="利益を守りながら広告を伸ばす。商品ページとレビューも含めて、Amazon運営で繰り返し発生する判断を短くします。" tools={amazonTools} />
+      <ToolSection id="rakuten" kicker="楽天市場" title="楽天の売上・RPPを改善" lead="広告をどこまで使えるか、商品ページに何が足りないか、レビューをどう売上改善につなげるかをすぐ確認できます。" tools={rakutenTools} />
+      <ToolSection id="store" kicker="自社EC・共通" title="集客・CVR・計測を改善" lead="サイト全体の診断からGA4、Clarity、Meta広告まで。専門用語を覚えるより先に、必要な設定と改善を進められます。" tools={storeTools} />
+      <ToolSection id="management" kicker="計画・効果検証" title="目標を作って、施策の結果まで見る" lead="売上目標をKPIに分解し、実績との差を確認。施策をやりっぱなしにせず、本当に効いたかまで振り返れます。" tools={managementTools} />
 
-        <div className={styles.appGrid}>
-          {apps.map((app) => (
-            <article className={styles.appCard} key={app.title}>
-              <div className={styles.appTop}>
-                <span className={`${styles.status} ${styles[app.tone]}`}>{app.status}</span>
-                <b>{app.number}</b>
-              </div>
-              <h3>{app.title}</h3>
-              <p>{app.description}</p>
-              <div className={styles.tags}>{app.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-              {app.href ? <a href={app.href}>{app.action}</a> : <span className={styles.disabled}>{app.action}</span>}
-            </article>
-          ))}
-          <article className={`${styles.appCard} ${styles.nextCard}`}>
-            <div className={styles.plus}>＋</div>
-            <h3>次のECアプリ</h3>
-            <p>広告、商品ページ、CVR、CRM、集計、自動化。実務で必要になったものから追加していきます。</p>
-            <span className={styles.disabled}>COMING NEXT</span>
-          </article>
+      <section className={styles.reasonSection}>
+        <div className={styles.reasonCopy}>
+          <span className={styles.kicker}>EC担当者のための道具箱</span>
+          <h2>Excelを作る前に、<br />ここで終わらせる。</h2>
+          <p>「毎回同じ計算をする」「レポートを見ても判断できない」「チェック項目を忘れる」。そんな小さな作業を、その場で終わらせるためのツールを揃えています。</p>
         </div>
-      </section>
-
-      <section className={styles.categories} id="categories">
-        <div className={styles.sectionHead}>
-          <div><span className={styles.label}>CATEGORIES</span><h2>ECの仕事を、<br />アプリ単位に分解する。</h2></div>
-          <p>モール、自社EC、広告、CRMをまたいで、「やること」単位で道具を揃えていきます。</p>
+        <div className={styles.reasonGrid}>
+          <article><b>01</b><strong>入力が少ない</strong><p>URL、CSV、数字など、必要なものだけ入れて使えます。</p></article>
+          <article><b>02</b><strong>結果が分かりやすい</strong><p>分析そのものではなく、「次に何を見るか・何をするか」まで整理します。</p></article>
+          <article><b>03</b><strong>ECに特化</strong><p>Amazon、楽天、自社ECの実務で使う判断だけに絞っています。</p></article>
         </div>
-        <div className={styles.categoryGrid}>
-          {categories.map(([title, body], index) => (
-            <article key={title}><b>{String(index + 1).padStart(2, '0')}</b><h3>{title}</h3><p>{body}</p></article>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.loopSection}>
-        <div className={styles.sectionHead}>
-          <div><span className={styles.label}>HOW ECP GROWS</span><h2>作って、使って、<br />残ったものを育てる。</h2></div>
-          <p>機能の多さではなく、ECの仕事が本当に短くなるかを基準にします。</p>
-        </div>
-        <div className={styles.loopGrid}>
-          {buildLoop.map(([num, title, body]) => <article key={num}><b>{num}</b><h3>{title}</h3><p>{body}</p></article>)}
-        </div>
-      </section>
-
-      <section className={styles.aiSection}>
-        <div>
-          <span className={styles.label}>AI WHEN IT HELPS</span>
-          <h2>AIありきにしない。<br />便利になる場所だけAI化。</h2>
-          <p>単純な比較や集計は普通のコードで速く。意味理解、提案、継続監視など、AIが効くところだけAIを使います。</p>
-          <a href="/ai-manager">AI ECマネージャー構想を見る →</a>
-        </div>
-        <div className={styles.aiFlow}>
-          <article><span>STEP 1</span><strong>単発ツール</strong><p>診断・比較・チェック</p></article>
-          <i>→</i>
-          <article><span>STEP 2</span><strong>保存・履歴</strong><p>前回との差を見る</p></article>
-          <i>→</i>
-          <article><span>STEP 3</span><strong>AI運用</strong><p>次の一手を出す</p></article>
-        </div>
-      </section>
-
-      <section className={styles.workSection}>
-        <div><span className={styles.label}>ECP WORK</span><h2>ツールで解けない仕事は、<br />人につなぐ。</h2><p>アプリで自己解決できることを増やし、それでも人の経験が必要な仕事は、EC案件・人材の仕組みへつなげていきます。</p></div>
-        <a href="/hub">EC案件ハブの試作を見る →</a>
       </section>
 
       <section className={styles.finalCta}>
-        <span className={styles.label}>START WITH ONE APP</span>
-        <h2>まず1個、<br />仕事を軽くする。</h2>
-        <p>ECサイト診断は今すぐ無料で使えます。ECPのアプリは、ここから増えていきます。</p>
-        <div className={styles.heroActions}><a className={styles.primaryLight} href="/diagnosis">ECサイトを無料診断 →</a><a className={styles.secondaryDark} href="#apps">アプリ一覧を見る</a></div>
+        <span>何から始めるか迷ったら</span>
+        <h2>まず、ECサイトを<br />無料診断。</h2>
+        <p>URLを入れるだけで、今すぐ見直せるポイントを確認できます。</p>
+        <a href="/diagnosis">無料で診断する →</a>
       </section>
 
       <footer className={styles.footer}>
-        <div className={styles.footerBrand}><a href="/" className={styles.brand}>EC<span>players</span></a><p>ECの面倒を、アプリにする。</p></div>
-        <nav><a href="#apps">アプリ</a><a href="/hub">EC案件</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a></nav>
+        <div className={styles.footerBrand}><a href="/" className={styles.brand}>EC<span>players</span></a><p>ECの売上改善に使う無料ツール集</p></div>
+        <nav><a href="#amazon">Amazon</a><a href="#rakuten">楽天</a><a href="#store">自社EC</a><a href="#management">計画・効果検証</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a></nav>
         <small>運営：株式会社まんがびと</small>
       </footer>
     </main>

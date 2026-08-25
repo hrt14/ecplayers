@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import ImprovementBox from './components/ImprovementBox'
 
 export const metadata: Metadata = {
-  title: 'ECplayers | ECの面倒を、アプリにする。',
-  description: '分析、比較、広告、商品ページ、CRM、業務改善。ECの現場で面倒な仕事を小さなアプリにして次々公開する、ECの道具箱です。',
+  title: 'ECplayers | Amazon・楽天・自社ECの無料ECツール集',
+  description: 'Amazon広告、楽天RPP、限界利益、商品ページ、レビュー、GA4、Clarity、施策効果検証まで。ECの売上改善に使える無料ツールをまとめています。',
   icons: {
     icon: [{ url: '/favicon.svg?v=20260808', type: 'image/svg+xml' }],
     shortcut: '/favicon.svg?v=20260808',
