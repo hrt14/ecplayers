@@ -31,6 +31,7 @@ const storeTools: Tool[] = [
   { title: '売上アップ施策 発見機', problem: '売上を増やす打ち手を洗い出したい', description: '集客、CVR、客単価、商品数、リピートなどを横断して、まだやれていない売上アップ施策を見つけます。', href: '/growth-finder', tags: ['売上改善', 'チェック'] },
   { title: '客単価アップ チェックリスト', problem: '客単価をもっと上げたい', description: 'セット販売、まとめ買い、送料無料ラインなど、客単価を上げる施策をチェックし、変更内容も残せます。', href: '/aov-checklist', tags: ['客単価', '施策'] },
   { title: '商品ページの増やし方', problem: 'アクセスを増やせる商品を増やしたい', description: 'セット、複数個、用途別など、既存商品から新しい商品ページを作る切り口を見つけます。', href: '/product-page-growth', tags: ['楽天', 'Amazon'] },
+  { title: '検索サムネイル改善発見', problem: '検索結果で自社だけ弱く見える？', description: '楽天・Amazon・Yahoo!の検索結果スクショで自社商品を指定。競合と並んだ見え方をAIで比較し、改善点を優先順で出します。', href: '/thumbnail-checker', tags: ['楽天', 'Amazon', 'Yahoo!'] },
   { title: 'GA4 超最小導入ナビ', problem: 'GA4を正しく入れたい', description: 'プロパティ作成からタグ設置、計測確認まで。ECで使える状態にするための必要な手順だけを進めます。', href: '/ga4-setup', tags: ['GA4', '導入'] },
   { title: 'GA4 定番レポート設定', problem: 'GA4を開いても見る場所が分からない', description: 'ECで見る場所を絞り、GA4を開きながら定番レポートを順番に設定できます。', href: '/ga4-report-setup', tags: ['GA4', '分析'] },
   { title: 'Clarity 超最小ガイド', problem: 'Clarity、どこを見ればいい？', description: '難しい分析は抜き。CVRや客単価の改善につながる、最低限見る場所だけに絞って案内します。', href: '/clarity-min-guide', tags: ['自社EC', '行動分析'] },
