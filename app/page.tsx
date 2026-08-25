@@ -10,6 +10,7 @@ type Tool = {
 
 const amazonTools: Tool[] = [
   { title: 'Amazon 限界利益計算機', problem: '広告費、どこまで使っていい？', description: '原価・販売手数料・FBA費用などを入れると、限界利益・限界ROAS・限界TACOSをすぐ計算できます。', href: '/amazon-margin', tags: ['利益', '広告判断'] },
+  { title: 'Amazon 売価分析', problem: '値下げして、本当に得した？', description: 'ビジネスレポートと広告商品レポートを重ね、売価ごとの売上・広告費・TACOS・広告差引回収を比較できます。', href: '/amazon-price-analysis', tags: ['売価', '広告回収'] },
   { title: 'Amazon広告 除外発見', problem: 'ムダな検索語句を止めたい', description: '広告レポートから、露出やクリックはあるのに成果が弱い検索語句を見つけ、除外候補を整理します。', href: '/amazon-negative-finder', tags: ['広告', '検索語句'] },
   { title: 'Amazon広告 伸ばせるポイント発見', problem: '広告の次の一手が分からない', description: '自社防御、ブランド広告、無駄な出稿などをチェックし、伸ばせるところと削れるところを整理します。', href: '/amazon-ads-growth', tags: ['広告', '改善診断'] },
   { title: 'Amazon 商品ページチェック', problem: '商品ページ、何が足りない？', description: '画像・訴求・比較・安心材料など、購入率を上げるために商品ページへ入れたい項目を順番に確認できます。', href: '/amazon-lp-checker', tags: ['商品ページ', 'CVR'] },
