@@ -27,6 +27,7 @@ const rakutenTools: Tool[] = [
 
 const storeTools: Tool[] = [
   { title: 'ECサイト無料診断', problem: 'まず、どこを直せばいい？', description: 'URLを入れるだけ。公開ページからSEO・商品情報・購入導線などをチェックし、改善ポイントを整理します。', href: '/diagnosis', tags: ['自社EC', '無料診断'] },
+  { title: '自社EC 導入ツール診断', problem: 'GA4やClarity、何を入れればいい？', description: 'URLからGA4・GTM・Clarityなどの導入痕跡を確認し、次に入れるべき計測・改善ツールを優先順で整理します。', href: '/site-stack-check', tags: ['GA4', 'Clarity', '導入診断'] },
   { title: '売上アップ施策 発見機', problem: '売上を増やす打ち手を洗い出したい', description: '集客、CVR、客単価、商品数、リピートなどを横断して、まだやれていない売上アップ施策を見つけます。', href: '/growth-finder', tags: ['売上改善', 'チェック'] },
   { title: '客単価アップ チェックリスト', problem: '客単価をもっと上げたい', description: 'セット販売、まとめ買い、送料無料ラインなど、客単価を上げる施策をチェックし、変更内容も残せます。', href: '/aov-checklist', tags: ['客単価', '施策'] },
   { title: '商品ページの増やし方', problem: 'アクセスを増やせる商品を増やしたい', description: 'セット、複数個、用途別など、既存商品から新しい商品ページを作る切り口を見つけます。', href: '/product-page-growth', tags: ['楽天', 'Amazon'] },
