@@ -44,33 +44,39 @@ const emptyScore: Record<ScoreKey, boolean> = {
   keyEvent: false,
 }
 
+const emptySetup = { property: false, stream: false, measurementId: false, installed: false }
+
 export default function Ga4SetupPage() {
   const [platform, setPlatform] = useState<Platform | null>(null)
   const [step, setStep] = useState(0)
-  const [setup, setSetup] = useState({ property: false, stream: false, measurementId: false, installed: false })
+  const [setup, setSetup] = useState(emptySetup)
   const [score, setScore] = useState<Record<ScoreKey, boolean>>(emptyScore)
   const [beginCheckout, setBeginCheckout] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem('ecp-ga4-setup-v1')
-      if (!saved) return
-      const parsed = JSON.parse(saved)
-      setPlatform(parsed.platform ?? null)
-      setStep(parsed.step ?? 0)
-      setSetup(parsed.setup ?? setup)
-      setScore({ ...emptyScore, ...(parsed.score ?? {}) })
-      setBeginCheckout(Boolean(parsed.beginCheckout))
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        setPlatform(parsed.platform ?? null)
+        setStep(typeof parsed.step === 'number' ? parsed.step : 0)
+        setSetup({ ...emptySetup, ...(parsed.setup ?? {}) })
+        setScore({ ...emptyScore, ...(parsed.score ?? {}) })
+        setBeginCheckout(Boolean(parsed.beginCheckout))
+      }
     } catch {
-      // Ignore damaged local state and start fresh.
+      // Damaged local data is ignored and the guide starts fresh.
+    } finally {
+      setHydrated(true)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
+    if (!hydrated) return
     localStorage.setItem('ecp-ga4-setup-v1', JSON.stringify({ platform, step, setup, score, beginCheckout }))
-  }, [platform, step, setup, score, beginCheckout])
+  }, [hydrated, platform, step, setup, score, beginCheckout])
 
   const scoreCount = useMemo(() => Object.values(score).filter(Boolean).length, [score])
   const progress = Math.round(((step + 1) / 6) * 100)
@@ -82,7 +88,7 @@ export default function Ga4SetupPage() {
   const reset = () => {
     setPlatform(null)
     setStep(0)
-    setSetup({ property: false, stream: false, measurementId: false, installed: false })
+    setSetup(emptySetup)
     setScore(emptyScore)
     setBeginCheckout(false)
     localStorage.removeItem('ecp-ga4-setup-v1')
@@ -91,9 +97,13 @@ export default function Ga4SetupPage() {
   const prompt = `GA4をECサイトに導入しています。利用環境は「${selectedPlatform?.label ?? '未選択'}」です。\nいま開いている管理画面のスクリーンショットを見て、次に押す場所を1つだけ教えてください。\n目的は「GA4の測定IDを正しく設定し、ECのpurchaseまで確認すること」です。\n画面にない項目名を推測で作らず、見えている内容だけを根拠に案内してください。`
 
   const copyPrompt = async () => {
-    await navigator.clipboard.writeText(prompt)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1600)
+    try {
+      await navigator.clipboard.writeText(prompt)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1600)
+    } catch {
+      setCopied(false)
+    }
   }
 
   return (
@@ -148,7 +158,7 @@ export default function Ga4SetupPage() {
                 <CheckRow checked={setup.measurementId} onClick={() => setSetupKey('measurementId')} title="G-XXXXXXXXXX を確認した" note="この測定IDを次のSTEPで使う" />
               </div>
               <a className={styles.official} href="https://support.google.com/analytics/answer/14183469?hl=ja" target="_blank" rel="noreferrer">Google公式の設定手順 ↗</a>
-              <Nav step={step} back={() => setStep(0)} next={() => setStep(2)} disabled={!setup.measurementId} />
+              <Nav back={() => setStep(0)} next={() => setStep(2)} disabled={!setup.measurementId} />
             </div>
           </section>
         )}
@@ -157,7 +167,7 @@ export default function Ga4SetupPage() {
           <section className={styles.card}>
             <div className={styles.cardHead}>
               <span className={styles.badge}>STEP 2</span>
-              <h1>{selectedPlatform?.label}にGA4を入れる。</h1>
+              <h1>{selectedPlatform?.label ?? 'ECサイト'}にGA4を入れる。</h1>
               <p>測定IDまたはGoogleタグを、利用環境に合った方法で設定します。</p>
             </div>
             <div className={styles.cardBody}>
@@ -167,7 +177,7 @@ export default function Ga4SetupPage() {
                 <div><strong>管理画面が説明と違う？</strong><span>スクショと一緒にAIへ貼るためのプロンプト</span></div>
                 <button onClick={copyPrompt}>{copied ? 'コピーしました' : 'プロンプトをコピー'}</button>
               </div>
-              <Nav step={step} back={() => setStep(1)} next={() => setStep(3)} disabled={!setup.installed} />
+              <Nav back={() => setStep(1)} next={() => setStep(3)} disabled={!setup.installed} />
             </div>
           </section>
         )}
@@ -182,7 +192,7 @@ export default function Ga4SetupPage() {
             <div className={styles.cardBody}>
               <div className={styles.testBox}><b>TEST</b><strong>自分のアクセスが表示された？</strong><p>表示されない場合は「導入済み」にしない。測定ID・タグの出力・公開状態を再確認します。</p></div>
               <CheckRow checked={score.realtime} onClick={() => setScoreKey('realtime')} title="リアルタイムに自分のアクセスが出た" note="基本計測OK" />
-              <Nav step={step} back={() => setStep(2)} next={() => setStep(4)} disabled={!score.realtime} />
+              <Nav back={() => setStep(2)} next={() => setStep(4)} disabled={!score.realtime} />
             </div>
           </section>
         )}
@@ -202,7 +212,7 @@ export default function Ga4SetupPage() {
                 <EventToggle code="purchase" title="購入した" checked={score.purchase} onClick={() => setScoreKey('purchase')} />
               </div>
               <div className={styles.notice}>purchaseは「イベント名が出た」だけでなく、次のSTEPで売上金額と商品情報まで確認します。</div>
-              <Nav step={step} back={() => setStep(3)} next={() => setStep(5)} disabled={!score.viewItem || !score.addToCart || !score.purchase} />
+              <Nav back={() => setStep(3)} next={() => setStep(5)} disabled={!score.viewItem || !score.addToCart || !score.purchase} />
             </div>
           </section>
         )}
@@ -252,7 +262,7 @@ function EventToggle({ code, title, checked, onClick, optional = false }: { code
   return <button className={`${styles.eventToggle} ${checked ? styles.eventOn : ''}`} onClick={onClick}><div><code>{code}</code>{optional && <small>推奨確認</small>}</div><strong>{title}</strong><span>{checked ? '確認済み ✓' : '未確認'}</span></button>
 }
 
-function Nav({ back, next, disabled }: { step: number; back: () => void; next: () => void; disabled?: boolean }) {
+function Nav({ back, next, disabled }: { back: () => void; next: () => void; disabled?: boolean }) {
   return <div className={styles.actions}><button className={styles.secondary} onClick={back}>← 戻る</button><button className={styles.primary} onClick={next} disabled={disabled}>次へ →</button></div>
 }
 
