@@ -80,16 +80,6 @@ function findJsonText(value: string) {
   return cleaned
 }
 
-function extractResponseText(result: unknown): string | null {
-  if (typeof result === 'string') return result
-  if (!result || typeof result !== 'object') return null
-  const value = result as Record<string, unknown>
-  for (const key of ['response', 'result', 'text', 'output_text']) {
-    if (typeof value[key] === 'string') return value[key] as string
-  }
-  return null
-}
-
 function asResult(value: unknown): AnalysisResult | null {
   if (!value || typeof value !== 'object') return null
   const object = value as Record<string, unknown>
@@ -123,6 +113,39 @@ function asResult(value: unknown): AnalysisResult | null {
   }
 }
 
+function parseAiResult(raw: unknown): AnalysisResult | null {
+  const direct = asResult(raw)
+  if (direct) return direct
+  if (!raw || typeof raw !== 'object') return null
+
+  const wrapped = raw as Record<string, unknown>
+  for (const key of ['response', 'result']) {
+    const value = wrapped[key]
+    const objectResult = asResult(value)
+    if (objectResult) return objectResult
+    if (typeof value === 'string') {
+      try {
+        const parsed = asResult(JSON.parse(findJsonText(value)))
+        if (parsed) return parsed
+      } catch {
+        // Fall through to other response shapes.
+      }
+    }
+  }
+
+  for (const key of ['text', 'output_text']) {
+    const value = wrapped[key]
+    if (typeof value !== 'string') continue
+    try {
+      const parsed = asResult(JSON.parse(findJsonText(value)))
+      if (parsed) return parsed
+    } catch {
+      // Invalid text output is handled as an upstream formatting error below.
+    }
+  }
+  return null
+}
+
 function promptFor(platform: Platform, keyword: string) {
   const marketplaceGuardrail = platform === 'amazon'
     ? 'Amazonの検索結果ではMAIN画像が表示されます。MAIN画像への文字・ロゴ・枠線・色ブロック・透かし・販促グラフィックの追加は提案しないでください。白背景と商品そのものの見せ方の範囲で改善してください。'
@@ -143,7 +166,6 @@ function promptFor(platform: Platform, keyword: string) {
 - 競合の商標・画像表現をコピーする提案はしない。
 - ${marketplaceGuardrail}
 - generationPrompt は、既存の商品そのもの・ブランド要素を維持しながら改善版サムネイルを制作するための日本語の具体的な指示文にする。競合画像の模倣は指示しない。
-- JSON以外は出力しない。
 
 出力:
 summary: 全体所見を120文字程度。
@@ -174,18 +196,15 @@ export async function POST(request: Request) {
         { role: 'user', content: promptFor(platform, keyword) },
       ],
       image,
-      guided_json: schema,
+      response_format: {
+        type: 'json_schema',
+        json_schema: schema,
+      },
       max_tokens: 1900,
       temperature: 0.15,
     })
 
-    let parsed = asResult(raw)
-    if (!parsed) {
-      const text = extractResponseText(raw)
-      if (text) {
-        try { parsed = asResult(JSON.parse(findJsonText(text))) } catch { parsed = null }
-      }
-    }
+    const parsed = parseAiResult(raw)
     if (!parsed) return NextResponse.json({ error: '比較結果を整形できませんでした。もう一度お試しください。' }, { status: 502 })
 
     return NextResponse.json(parsed, {
@@ -193,6 +212,10 @@ export async function POST(request: Request) {
     })
   } catch (error) {
     console.error('thumbnail-checker error', error)
+    const message = error instanceof Error ? error.message : ''
+    if (/license|acceptable use|agree/i.test(message)) {
+      return NextResponse.json({ error: 'AIモデルの初期利用設定が必要です。Cloudflare側でモデル利用規約への同意を完了してください。' }, { status: 503 })
+    }
     return NextResponse.json({ error: 'AI比較中にエラーが発生しました。もう一度お試しください。' }, { status: 500 })
   }
 }
