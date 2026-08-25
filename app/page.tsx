@@ -61,6 +61,16 @@ const apps = [
     href: '/rakuten-margin',
     action: '今すぐ計算する →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '07',
+    title: 'ロードマップメーカー',
+    description: '目標年商から月次売上・セッション・CVR・客単価を逆算し、毎月の施策までロードマップ化。',
+    tags: ['計画', 'KPI', '施策管理'],
+    href: '/roadmap-maker',
+    action: 'ロードマップを作る →',
+  },
 ]
 
 const categories = [
