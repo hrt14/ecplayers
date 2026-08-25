@@ -1,0 +1,150 @@
+.root {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 2147483000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.fab {
+  border: 0;
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+  cursor: pointer;
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  bottom: 52px;
+  width: min(360px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid rgba(17, 24, 39, .12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .98);
+  color: #111827;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(12px);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.header strong {
+  display: block;
+  font-size: 16px;
+}
+
+.header p,
+.sent p,
+.notice,
+.error {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.header p,
+.notice,
+.meta {
+  color: #6b7280;
+}
+
+.close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.panel textarea {
+  display: block;
+  width: 100%;
+  min-height: 124px;
+  resize: vertical;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: #fff;
+  color: #111827;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.55;
+  outline: none;
+}
+
+.panel textarea:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, .08);
+}
+
+.meta {
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.notice {
+  margin-top: 6px;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.submit,
+.sent button {
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  background: #111827;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: .6;
+}
+
+.sent {
+  padding: 8px 0 2px;
+}
+
+.sent strong {
+  font-size: 15px;
+}
+
+@media (max-width: 640px) {
+  .root {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .panel {
+    width: min(360px, calc(100vw - 24px));
+  }
+}
