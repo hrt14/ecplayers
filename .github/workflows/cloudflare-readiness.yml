@@ -43,18 +43,21 @@ jobs:
         if: github.ref == 'refs/heads/main' && steps.cloudflare-auth.outputs.ready != 'true'
         run: |
           set -o pipefail
-          npx wrangler deploy --temporary 2>&1 | tee temporary-deploy.log
+          npx wrangler deploy --temporary --config wrangler.preview.jsonc 2>&1 | tee temporary-deploy.log
           PREVIEW_URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' temporary-deploy.log | tail -n 1)"
           test -n "$PREVIEW_URL"
           echo "Preview URL: $PREVIEW_URL"
           HTML=""
+          TOOL_HTML=""
           for i in 1 2 3 4 5; do
-            if HTML="$(curl -fsSL "$PREVIEW_URL")"; then
+            if HTML="$(curl -fsSL "$PREVIEW_URL")" && TOOL_HTML="$(curl -fsSL "$PREVIEW_URL/thumbnail-checker")"; then
               break
             fi
             sleep 2
           done
           test -n "$HTML"
+          test -n "$TOOL_HTML"
           echo "$HTML" | grep -q 'ECの面倒を'
-          echo "$HTML" | grep -q 'アプリにする'
-          echo "Verified ECP concept on $PREVIEW_URL"
+          echo "$HTML" | grep -q '検索サムネイル改善発見'
+          echo "$TOOL_HTML" | grep -q '自社だけ弱い理由'
+          echo "Verified ECP thumbnail checker UI on $PREVIEW_URL"
