@@ -1,6 +1,7 @@
 'use client'
 
-import { ChangeEvent, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import type { ChangeEvent } from 'react'
 import styles from './RoadmapManager.module.css'
 
 type InitiativeStatus = '' | '未着手' | '進行中' | '完了'
@@ -100,13 +101,13 @@ const headerAliases: Record<keyof MonthRow, string[]> = {
   month: ['month', '月', '年月', '期間'],
   targetSales: ['targetsales', '売上目標', '目標売上', '計画売上'],
   actualSales: ['actualsales', '売上実績', '実績売上', 'sales', '売上'],
-  targetSessions: ['targetsessions', 'セッション目標', '目標セッション', 'アクセス目標'],
+  targetSessions: ['targetsessions', 'セッション目標', '目標セッション', 'アクセス目標', 'session', 'セッション'],
   actualSessions: ['actualsessions', 'セッション実績', '実績セッション', 'sessions', 'アクセス実績', 'アクセス'],
-  targetCvr: ['targetcvr', 'cvr目標', '目標cvr'],
-  actualCvr: ['actualcvr', 'cvr実績', '実績cvr', 'cvr'],
-  targetAov: ['targetaov', '客単価目標', '目標客単価'],
-  actualAov: ['actualaov', '客単価実績', '実績客単価', 'aov', '客単価'],
-  initiative: ['initiative', '施策', '今月の施策', 'アクション'],
+  targetCvr: ['targetcvr', 'cvr目標', '目標cvr', 'cvr'],
+  actualCvr: ['actualcvr', 'cvr実績', '実績cvr'],
+  targetAov: ['targetaov', '客単価目標', '目標客単価', 'aov', '客単価'],
+  actualAov: ['actualaov', '客単価実績', '実績客単価'],
+  initiative: ['initiative', '施策', '施策1', '今月の施策', 'アクション', 'テーマ'],
   initiativeStatus: ['status', '施策状況', '進捗', 'ステータス'],
 }
 
@@ -243,7 +244,7 @@ export default function RoadmapManagerPage() {
   }, [rows])
 
   const updateRow = (index: number, key: keyof MonthRow, value: string) => {
-    setRows((current) => current.map((row, rowIndex) => rowIndex === index ? { ...row, [key]: value } : row))
+    setRows((current) => current.map((row, rowIndex) => rowIndex === index ? ({ ...row, [key]: value } as MonthRow) : row))
   }
 
   const importText = (text: string) => {
@@ -332,7 +333,7 @@ export default function RoadmapManagerPage() {
             <span>01</span>
             <div>
               <h2>数字を取り込む</h2>
-              <p>CSVファイルを選ぶか、Excel / スプレッドシートの内容をCSV形式で貼り付けます。</p>
+              <p>CSVファイルを選ぶか、Excel / スプレッドシートの内容をCSV形式で貼り付けます。ロードマップメーカーから保存したCSVもそのまま使えます。</p>
             </div>
           </div>
           <label className={styles.fileButton}>
