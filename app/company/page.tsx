@@ -14,7 +14,7 @@ const profile = [
 
 const businesses = [
   ['EC支援・コンサルティング', 'EC運営、商品ページ改善、広告運用、売上分析など、EC事業の成長支援を行っています。'],
-  ['Webサービスの企画・運営', 'ECplayersをはじめ、実務をより軽く、速くするためのWebサービスやAI活用ツールを企画・開発しています。'],
+  ['Webサービスの企画・運営', 'ECplayersをはじめ、ECの実務で発生する面倒な作業を小さくするWebアプリやAI活用ツールを企画・開発しています。'],
   ['電子書籍出版', 'ビジネス・仕事術などを中心に、電子書籍の企画・編集・出版を行っています。'],
   ['Webメディア運営', '出版・ビジネス領域を中心としたWebメディアを運営しています。'],
 ]
@@ -29,7 +29,7 @@ const history = [
   ['2015', 'ECコンサル事業開始。'],
   ['2016', '電子書籍事業の出版数1000タイトル突破。'],
   ['2025', '電子書籍の出版数3000タイトル突破。'],
-  ['NOW', 'ECplayersを企画・開発。'],
+  ['NOW', 'ECplayersで、EC実務アプリを継続的に企画・開発。'],
 ]
 
 export default function CompanyPage() {
@@ -37,13 +37,13 @@ export default function CompanyPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
-        <nav><a href="/diagnosis">ECサイト診断</a><a href="/">トップへ戻る</a></nav>
+        <nav><a href="/#apps">アプリ一覧</a><a href="/diagnosis">ECサイト診断</a><a href="/">トップへ戻る</a></nav>
       </header>
 
       <section className={styles.hero}>
         <span>COMPANY</span>
         <h1>会社概要</h1>
-        <p>ECplayersは、株式会社まんがびとが企画・開発・運営しています。</p>
+        <p>ECplayersは、株式会社まんがびとが企画・開発・運営するEC実務アプリのプラットフォームです。</p>
       </section>
 
       <section className={styles.profileSection}>
@@ -55,8 +55,8 @@ export default function CompanyPage() {
         </div>
         <div className={styles.companyCopy}>
           <span>ABOUT MANGABITO</span>
-          <h2>ECの実務から、<br />役に立つ仕組みをつくる。</h2>
-          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、長年のEC運営・改善の経験を、誰でも使える診断・比較・分析の仕組みに変えていきます。</p>
+          <h2>ECの実務から、<br />役に立つアプリをつくる。</h2>
+          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、EC運営の現場で繰り返し発生する「ちょっと面倒」を、誰でもすぐ使える小さなアプリに変えていきます。</p>
           <a href="https://mangabito.biz/" target="_blank" rel="noreferrer">株式会社まんがびと 公式サイト →</a>
         </div>
       </section>
@@ -79,15 +79,15 @@ export default function CompanyPage() {
 
       <section className={styles.ecplayersSection}>
         <span>ECplayers</span>
-        <h2>EC分析を、もっと軽く。</h2>
-        <p>数えられるものはコードで。意味を考える必要があるところだけAIで。EC担当者が「次に何を見るべきか、何を直すべきか」に早くたどり着けるサービスを目指しています。</p>
-        <a href="/">ECplayersを見る →</a>
+        <h2>ECの面倒を、アプリにする。</h2>
+        <p>分析、比較、広告、商品ページ、CRM、業務改善。1アプリ1課題で小さく公開し、実際に役立つものを育てます。単純な処理はコードで、意味理解や提案が必要な場所だけAIを使います。</p>
+        <a href="/#apps">ECplayersのアプリを見る →</a>
       </section>
 
       <footer className={styles.footer}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
-        <span>運営：株式会社まんがびと</span>
-        <nav><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a><a href="https://mangabito.biz/" target="_blank" rel="noreferrer">公式サイト</a></nav>
+        <span>ECの面倒を、アプリにする。</span>
+        <nav><a href="/#apps">アプリ</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a><a href="https://mangabito.biz/" target="_blank" rel="noreferrer">公式サイト</a></nav>
         <small>© 株式会社まんがびと</small>
       </footer>
     </main>
