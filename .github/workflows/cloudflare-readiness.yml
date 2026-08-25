@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - migration/cloudflare-workers
+      - verify/amazon-negative-finder
   workflow_dispatch:
 
 jobs:
