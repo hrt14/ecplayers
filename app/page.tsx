@@ -12,9 +12,19 @@ const apps = [
     action: '今すぐ使う →',
   },
   {
+    status: 'LIVE',
+    tone: 'live',
+    number: '02',
+    title: '商品ページ増やし方',
+    description: '楽天・Amazonで、既存商品からセット・複数個・用途別などの商品化候補を見つける。',
+    tags: ['楽天', 'Amazon', '商品ページ'],
+    href: '/product-page-growth',
+    action: '今すぐ使う →',
+  },
+  {
     status: 'BUILDING',
     tone: 'building',
-    number: '02',
+    number: '03',
     title: '商品比較',
     description: '商品ページを見ながら自社・競合を追加し、価格・評価・レビュー数・画像などを横並び比較。',
     tags: ['Amazon', '競合比較', 'Chrome拡張'],
@@ -24,7 +34,7 @@ const apps = [
   {
     status: 'BUILDING',
     tone: 'building',
-    number: '03',
+    number: '04',
     title: 'AI ECマネージャー',
     description: '単発の分析を継続運用へ。変化を見つけて、今日やる改善アクションにつなげる構想。',
     tags: ['AI', '継続改善', '運用'],
@@ -34,7 +44,7 @@ const apps = [
   {
     status: 'EXPERIMENT',
     tone: 'experiment',
-    number: '04',
+    number: '05',
     title: 'EC案件ハブ',
     description: 'ECの仕事を探す人と、EC人材を探す企業の探索コストを下げる実験プロダクト。',
     tags: ['人材', '案件', 'マッチング'],
@@ -98,9 +108,9 @@ export default function Home() {
             <div className={styles.score}><span>EC SCORE</span><b>72</b><small>/100</small></div>
             <a href="/diagnosis">無料で診断する →</a>
           </article>
-          <article className={styles.stackSub}><span>02</span><div><small>BUILDING</small><strong>商品比較</strong></div><b>→</b></article>
-          <article className={styles.stackSub}><span>03</span><div><small>BUILDING</small><strong>AI ECマネージャー</strong></div><b>→</b></article>
-          <article className={styles.stackSub}><span>04</span><div><small>EXPERIMENT</small><strong>EC案件ハブ</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>02</span><div><small>LIVE</small><strong>商品ページ増やし方</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>03</span><div><small>BUILDING</small><strong>商品比較</strong></div><b>→</b></article>
+          <article className={styles.stackSub}><span>04</span><div><small>BUILDING</small><strong>AI ECマネージャー</strong></div><b>→</b></article>
         </div>
       </section>
 
