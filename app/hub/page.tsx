@@ -12,13 +12,13 @@ export default function HubPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
-        <a href="/" className={styles.back}>通常版へ</a>
+        <a href="/#apps" className={styles.back}>ECPアプリ一覧へ</a>
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.kicker}>EC WORK FEED</div>
+        <div className={styles.kicker}>ECP EXPERIMENT / EC WORK FEED</div>
         <h1>EC案件を、<br />一気見できる。</h1>
-        <p>仲介会社ごとに探し回らず、ECの仕事をひとつの場所で。気になる案件があれば、そのまま「話を聞いてみる」。</p>
+        <p>ツールだけでは解けないECの仕事を、人につなぐための実験アプリ。仲介会社ごとに探し回らず、ECの仕事をひとつの場所で探せる形を検証しています。</p>
         <div className={styles.search}><span>⌕</span><div><small>希望条件で絞り込み</small><strong>楽天 / Amazon / Shopify / 広告...</strong></div><button>検索</button></div>
       </section>
 
@@ -30,7 +30,7 @@ export default function HubPage() {
       </section>
 
       <section className={styles.feed}>
-        <div className={styles.feedHeader}><div><small>NOW OPEN</small><h2>募集中のEC案件</h2></div><span>掲載イメージ</span></div>
+        <div className={styles.feedHeader}><div><small>PROTOTYPE</small><h2>EC案件の掲載イメージ</h2></div><span>実験中</span></div>
         {jobs.map((job, i) => (
           <article className={styles.card} key={job.title}>
             <div className={styles.cardTop}><span className={i === 2 ? styles.urgent : styles.new}>{job.label}</span><button>☆</button></div>
@@ -43,8 +43,8 @@ export default function HubPage() {
       </section>
 
       <section className={styles.stickyCta}>
-        <div><small>ECplayers</small><strong>あなたに合うEC案件を探す</strong></div>
-        <button>無料登録</button>
+        <div><small>ECP EXPERIMENT</small><strong>ツールで解けない仕事は、人につなぐ。</strong></div>
+        <a href="/#apps">アプリ一覧へ</a>
       </section>
     </main>
   )
