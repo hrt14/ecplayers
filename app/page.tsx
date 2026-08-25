@@ -111,6 +111,16 @@ const apps = [
     href: '/clarity-min-guide',
     action: '見る場所を決める →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '12',
+    title: '楽天LPチェッカー',
+    description: '楽天の商品URLから、ターゲット・ベネフィット・比較・使用シーン・根拠・FAQなどLPの不足要素を診断。',
+    tags: ['楽天', 'LP改善', 'CVR'],
+    href: '/rakuten-lp-check',
+    action: 'LPをチェックする →',
+  },
 ]
 
 const categories = [
