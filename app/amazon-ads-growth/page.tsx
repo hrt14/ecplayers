@@ -4,7 +4,7 @@ import styles from './amazonAdsGrowth.module.css'
 
 export const metadata: Metadata = {
   title: 'Amazon広告 伸びしろ発見機 | ECplayers',
-  description: 'Amazon広告の検索語句レポートとバルクファイルから、無駄出稿・伸長候補・ブランド防御・自社ASIN防御の抜けを無料診断します。',
+  description: 'Amazon広告の検索語句レポートとバルクCSVから、無駄出稿・伸長候補・ブランド防御・自社ASIN防御の抜けを無料診断します。',
 }
 
 export default function AmazonAdsGrowthPage() {
@@ -16,9 +16,9 @@ export default function AmazonAdsGrowthPage() {
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.badge}>ECP APP 05 / AMAZON ADS GROWTH FINDER</div>
+        <div className={styles.badge}>ECP APP 13 / AMAZON ADS GROWTH FINDER</div>
         <h1>Amazon広告、<br /><em>まだ伸ばせる場所はどこ？</em></h1>
-        <p className={styles.lead}>検索語句レポートから無駄出稿を見つけて原資化。バルクファイルも入れると、ブランド広告・自社ブランド防御・自社ASIN防御の抜けまで一気に確認できます。</p>
+        <p className={styles.lead}>検索語句レポートから無駄出稿を見つけて原資化。バルクファイルをCSV保存して追加すると、ブランド広告・自社ブランド防御・自社ASIN防御の抜けまで一気に確認できます。</p>
         <AmazonAdsGrowthClient />
       </section>
 
@@ -30,7 +30,7 @@ export default function AmazonAdsGrowthPage() {
         <div className={styles.featureGrid}>
           <article><b>01</b><h3>無駄出稿を原資化</h3><p>十分なクリックがあるのに売上ゼロの検索語句を抽出。削減候補額を合計します。</p></article>
           <article><b>02</b><h3>勝ち筋を昇格</h3><p>売れていて目標ACoS内の検索語句を抽出。Exact化や独立運用の候補を見つけます。</p></article>
-          <article><b>03</b><h3>守りの抜けを確認</h3><p>バルクファイルからSponsored Brands、自社ブランド語、自社ASINターゲティングの有無を確認します。</p></article>
+          <article><b>03</b><h3>守りの抜けを確認</h3><p>バルクCSVからSponsored Brands、自社ブランド語、自社ASINターゲティングの有無を確認します。</p></article>
         </div>
       </section>
 
