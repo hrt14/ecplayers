@@ -12,11 +12,11 @@ export default function DiagnosisPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a className={styles.brand} href="/">EC<span>players</span></a>
-        <a className={styles.back} href="/">ECplayersへ戻る</a>
+        <a className={styles.back} href="/#apps">アプリ一覧へ戻る</a>
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.badge}>FREE EC SITE CHECK</div>
+        <div className={styles.badge}>ECP APP 01 / FREE EC SITE CHECK</div>
         <h1>あなたのEC、<br /><em>どこを直せば伸びる？</em></h1>
         <p className={styles.lead}>ECサイトのURLを入れるだけ。公開ページを読み取り、検索流入・商品ページ・購入導線をルールベースで自動チェックします。</p>
         <DiagnosisClient />
@@ -40,11 +40,11 @@ export default function DiagnosisPage() {
       </section>
 
       <section className={styles.roadmap}>
-        <div><span>NEXT</span><h2>最終的には、毎朝<br />「今日やるべき3つ」まで。</h2></div>
-        <p>この無料診断はECplayersの入口です。今後は、許可された方法で取得できるデータを活用し、異常検知、原因分析、改善優先順位まで一つの画面にまとめていきます。</p>
+        <div><span>ECP APPS</span><h2>これは、ECPの<br />最初の1アプリ。</h2></div>
+        <p>ECplayersでは、診断、比較、広告、商品ページ、CRM、業務自動化など、ECの実務で繰り返す面倒な作業を小さなアプリにして追加していきます。この診断も、使われるほど改善し、必要な場所だけAIや継続機能を足していきます。</p>
       </section>
 
-      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/company">運営：株式会社まんがびと</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><small>© 株式会社まんがびと</small></footer>
+      <footer className={styles.footer}><a className={styles.brand} href="/">EC<span>players</span></a><a href="/#apps">アプリ一覧</a><a href="/company">運営：株式会社まんがびと</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><small>© 株式会社まんがびと</small></footer>
     </main>
   )
 }
