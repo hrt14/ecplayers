@@ -57,4 +57,7 @@ jobs:
           test -n "$HTML"
           echo "$HTML" | grep -q 'ECの面倒を'
           echo "$HTML" | grep -q 'アプリにする'
-          echo "Verified ECP concept on $PREVIEW_URL"
+          AMAZON_HTML="$(curl -fsSL "$PREVIEW_URL/amazon-margin")"
+          echo "$AMAZON_HTML" | grep -q 'Amazon'
+          echo "$AMAZON_HTML" | grep -q '限界ROAS'
+          echo "Verified ECP concept and Amazon margin calculator on $PREVIEW_URL"
