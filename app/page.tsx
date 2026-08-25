@@ -101,6 +101,16 @@ const apps = [
     href: '/growth-finder',
     action: '伸びしろを見つける →',
   },
+  {
+    status: 'LIVE',
+    tone: 'live',
+    number: '11',
+    title: 'Clarity 超最小利用ナビ',
+    description: 'CVR・客単価・離脱・LPから目的を選ぶだけ。見る場所を3つに絞り、次に直す1個まで決める。',
+    tags: ['Clarity', 'CVR', '計測・分析'],
+    href: '/clarity-min-guide',
+    action: '見る場所を決める →',
+  },
 ]
 
 const categories = [
