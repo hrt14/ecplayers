@@ -14,7 +14,7 @@ const profile = [
 
 const businesses = [
   ['EC支援・コンサルティング', 'EC運営、商品ページ改善、広告運用、売上分析など、EC事業の成長支援を行っています。'],
-  ['Webサービスの企画・運営', 'ECplayersをはじめ、ECの実務で発生する面倒な作業を小さくするWebアプリやAI活用ツールを企画・開発しています。'],
+  ['ECツール・Webサービス', 'Amazon、楽天、自社ECの広告・利益・商品ページ・計測・施策管理など、日々のEC業務を楽にするWebツールを提供しています。'],
   ['電子書籍出版', 'ビジネス・仕事術などを中心に、電子書籍の企画・編集・出版を行っています。'],
   ['Webメディア運営', '出版・ビジネス領域を中心としたWebメディアを運営しています。'],
 ]
@@ -29,7 +29,7 @@ const history = [
   ['2015', 'ECコンサル事業開始。'],
   ['2016', '電子書籍事業の出版数1000タイトル突破。'],
   ['2025', '電子書籍の出版数3000タイトル突破。'],
-  ['NOW', 'ECplayersで、EC実務アプリを継続的に企画・開発。'],
+  ['NOW', 'ECplayersで、Amazon・楽天・自社ECの売上改善に使える無料ツールを提供。'],
 ]
 
 export default function CompanyPage() {
@@ -37,13 +37,13 @@ export default function CompanyPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
-        <nav><a href="/#apps">アプリ一覧</a><a href="/diagnosis">ECサイト診断</a><a href="/">トップへ戻る</a></nav>
+        <nav><a href="/#tools">無料ツール一覧</a><a href="/diagnosis">ECサイト診断</a><a href="/">トップへ戻る</a></nav>
       </header>
 
       <section className={styles.hero}>
         <span>COMPANY</span>
         <h1>会社概要</h1>
-        <p>ECplayersは、株式会社まんがびとが企画・開発・運営するEC実務アプリのプラットフォームです。</p>
+        <p>ECplayersは、株式会社まんがびとが運営する、Amazon・楽天・自社ECの売上改善に使える無料ツール集です。</p>
       </section>
 
       <section className={styles.profileSection}>
@@ -55,8 +55,8 @@ export default function CompanyPage() {
         </div>
         <div className={styles.companyCopy}>
           <span>ABOUT MANGABITO</span>
-          <h2>ECの実務から、<br />役に立つアプリをつくる。</h2>
-          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、EC運営の現場で繰り返し発生する「ちょっと面倒」を、誰でもすぐ使える小さなアプリに変えていきます。</p>
+          <h2>ECの現場で、<br />本当に使う道具を。</h2>
+          <p>株式会社まんがびとは、出版事業とEC支援を手がけてきた会社です。ECplayersでは、広告費の判断、商品ページ改善、レビュー分析、計測設定など、EC担当者が日々困る仕事を手軽に片づけられるツールを提供しています。</p>
           <a href="https://mangabito.biz/" target="_blank" rel="noreferrer">株式会社まんがびと 公式サイト →</a>
         </div>
       </section>
@@ -79,15 +79,15 @@ export default function CompanyPage() {
 
       <section className={styles.ecplayersSection}>
         <span>ECplayers</span>
-        <h2>ECの面倒を、アプリにする。</h2>
-        <p>分析、比較、広告、商品ページ、CRM、業務改善。1アプリ1課題で小さく公開し、実際に役立つものを育てます。単純な処理はコードで、意味理解や提案が必要な場所だけAIを使います。</p>
-        <a href="/#apps">ECplayersのアプリを見る →</a>
+        <h2>Amazon・楽天・自社ECの<br />売上改善を、もっと手軽に。</h2>
+        <p>限界利益の計算、広告の無駄発見、商品ページチェック、レビュー分析、GA4・Clarity、施策の効果検証まで。必要なときに、必要なツールをすぐ使えます。</p>
+        <a href="/#tools">無料ツールを見る →</a>
       </section>
 
       <footer className={styles.footer}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
-        <span>ECの面倒を、アプリにする。</span>
-        <nav><a href="/#apps">アプリ</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a><a href="https://mangabito.biz/" target="_blank" rel="noreferrer">公式サイト</a></nav>
+        <span>ECの売上改善に使う無料ツール集</span>
+        <nav><a href="/#tools">無料ツール</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a><a href="https://mangabito.biz/" target="_blank" rel="noreferrer">公式サイト</a></nav>
         <small>© 株式会社まんがびと</small>
       </footer>
     </main>
