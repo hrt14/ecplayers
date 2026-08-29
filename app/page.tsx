@@ -15,6 +15,7 @@ const amazonTools: Tool[] = [
   { title: 'Amazon広告 伸ばせるポイント発見', problem: '広告の次の一手が分からない', description: '自社防御、ブランド広告、無駄な出稿などをチェックし、伸ばせるところと削れるところを整理します。', href: '/amazon-ads-growth', tags: ['広告', '改善診断'] },
   { title: 'Amazon 商品ページチェック', problem: '商品ページ、何が足りない？', description: '画像・訴求・比較・安心材料など、購入率を上げるために商品ページへ入れたい項目を順番に確認できます。', href: '/amazon-lp-checker', tags: ['商品ページ', 'CVR'] },
   { title: 'Amazon 低評価レビュー対策', problem: '悪いレビューを売上改善につなげたい', description: '低評価レビューから不安・不満を整理し、商品ページに追加すべき説明やコンテンツ案を作れます。', href: '/amazon-review-follow', tags: ['レビュー', '商品ページ'] },
+  { title: 'Amazon 在庫健全度チェック', problem: '欠品や長期保管手数料に気づけていない', description: '在庫レポートCSVを読み込むだけ。欠品リスク・長期保管リスク・過剰在庫をSKUごとに判定し、対応が必要なものだけ一覧で確認できます。', href: '/amazon-inventory-health', tags: ['在庫', '欠品対策'] },
 ]
 
 const rakutenTools: Tool[] = [
