@@ -1,10 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import ImprovementBox from './components/ImprovementBox'
+import MatchingBand from './components/MatchingBand'
 
 export const metadata: Metadata = {
-  title: 'ECplayers | Amazon・楽天・自社ECの無料ECツール集',
-  description: 'Amazon広告、楽天RPP、限界利益、商品ページ、レビュー、GA4、Clarity、施策効果検証まで。ECの売上改善に使える無料ツールをまとめています。',
+  title: 'ECplayers | ECプレイヤーとEC企業の無料マッチング・無料ECツール集',
+  description: 'ECプレイヤー（EC人材）とEC企業を、完全無料・手数料ゼロでつなぐマッチングサイト。実技診断でスキルが見えるプレイヤーに無料で相談できます。Amazon・楽天・自社ECの売上改善に使える無料ツールも25個。',
   icons: {
     icon: [{ url: '/favicon.svg?v=20260808', type: 'image/svg+xml' }],
     shortcut: '/favicon.svg?v=20260808',
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         {children}
+        <MatchingBand />
         <ImprovementBox />
       </body>
     </html>
