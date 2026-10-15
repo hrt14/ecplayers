@@ -65,8 +65,8 @@ jobs:
             sleep 2
           done
           test -n "$HTML"
-          echo "$HTML" | grep -q 'ECの売上改善に使う'
-          echo "$HTML" | grep -q '無料ツール集'
+          echo "$HTML" | grep -q '払った報酬が'
+          echo "$HTML" | grep -q '中抜き'
           AMAZON_HTML="$(curl -fsSL "$PREVIEW_URL/amazon-margin")"
           echo "$AMAZON_HTML" | grep -q 'Amazon'
           echo "$AMAZON_HTML" | grep -q '限界ROAS'

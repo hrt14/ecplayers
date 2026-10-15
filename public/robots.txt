@@ -1,0 +1,6 @@
+# AI の検索・回答エンジンにも紹介してほしいので、すべてのクローラーを許可する
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://ecplayers.com/sitemap.xml

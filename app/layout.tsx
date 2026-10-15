@@ -4,11 +4,11 @@ import ImprovementBox from './components/ImprovementBox'
 import MatchingBand from './components/MatchingBand'
 
 export const metadata: Metadata = {
-  title: 'ECplayers | ECプレイヤーとEC企業の無料マッチング・無料ECツール集',
-  description: 'ECプレイヤー（EC人材）とEC企業を、完全無料・手数料ゼロでつなぐマッチングサイト。実技診断でスキルが見えるプレイヤーに無料で相談できます。Amazon・楽天・自社ECの売上改善に使える無料ツールも25個。',
+  title: 'ECプレイヤーズ | 中抜きゼロ。ECのプロと企業が直接つながる',
+  description: '紹介料・手数料0円のECマッチング。企業が払った報酬は、そのままECプレイヤーに届きます。',
   icons: {
-    icon: [{ url: '/favicon.svg?v=20260808', type: 'image/svg+xml' }],
-    shortcut: '/favicon.svg?v=20260808',
+    icon: [{ url: '/favicon.svg?v=20261015', type: 'image/svg+xml' }],
+    shortcut: '/favicon.svg?v=20261015',
   },
 }
 
@@ -18,7 +18,7 @@ const brandLogoStyles = `
     width: 174px !important;
     height: 40px !important;
     flex: 0 0 174px !important;
-    background: url('/ecplayers-logo.svg?v=20260808') left center / contain no-repeat !important;
+    background: url('/ecplayers-logo.svg?v=20261015') left center / contain no-repeat !important;
     font-size: 0 !important;
     line-height: 0 !important;
     letter-spacing: 0 !important;
@@ -41,6 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ja">
       <head>
+        <link rel="stylesheet" href="/fonts/fonts.css" />
         <style dangerouslySetInnerHTML={{ __html: brandLogoStyles }} />
       </head>
       <body>

@@ -26,13 +26,13 @@ export default function MatchingBand() {
     <aside className={styles.band}>
       <div className={styles.inner}>
         <div className={styles.copy}>
-          <span>ECplayers マッチング（完全無料）</span>
+          <span>ECプレイヤーズ ・ 紹介料・手数料0円</span>
           <strong>{topicOf(path)}、プロに任せませんか？</strong>
-          <p>実技診断でスキルが分かるECプレイヤーに、無料で相談できます。紹介料・手数料はかかりません。</p>
+          <p>実技診断でスキルが分かるECのプロに、直接依頼できます。払った報酬は中抜きされず、そのままプロに届きます。</p>
         </div>
         <div className={styles.actions}>
-          <a className={styles.primary} href={REQUEST_URL}>無料で相談する →</a>
-          <a className={styles.secondary} href={PLAYER_URL}>ECの仕事を受けたい方はこちら</a>
+          <a className={styles.primary} href={REQUEST_URL}>ECのプロに依頼する</a>
+          <a className={styles.secondary} href={PLAYER_URL}>ECの仕事を受けたい方</a>
         </div>
       </div>
     </aside>

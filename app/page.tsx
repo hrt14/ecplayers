@@ -1,187 +1,254 @@
+import type { Metadata } from 'next'
 import styles from './Home.module.css'
 
 const PLAYER_URL = 'https://shindan.ecplayers.com/'
 const REQUEST_URL = 'https://shindan.ecplayers.com/request'
 
-type Tool = {
-  title: string
-  problem: string
-  description: string
-  href: string
-  tags: string[]
+export const metadata: Metadata = {
+  title: 'ECプレイヤーズ | 中抜きゼロ。ECのプロと企業が直接つながる',
+  description:
+    '紹介料・手数料0円のECマッチング。企業が払った報酬は、そのままECプレイヤーに届きます。Amazon・楽天・自社ECの運用ができるプロに、実技診断のスコアを見て直接依頼できます。',
 }
 
-const amazonTools: Tool[] = [
-  { title: 'Amazon 限界利益計算機', problem: '広告費、どこまで使っていい？', description: '原価・販売手数料・FBA費用などを入れると、限界利益・限界ROAS・限界TACOSをすぐ計算できます。', href: '/amazon-margin', tags: ['利益', '広告判断'] },
-  { title: 'Amazon 売価分析', problem: '値下げして、本当に得した？', description: 'ビジネスレポートと広告商品レポートを重ね、売価ごとの売上・広告費・TACOS・広告差引回収を比較できます。', href: '/amazon-price-analysis', tags: ['売価', '広告回収'] },
-  { title: 'Amazon広告 除外発見', problem: 'ムダな検索語句を止めたい', description: '広告レポートから、露出やクリックはあるのに成果が弱い検索語句を見つけ、除外候補を整理します。', href: '/amazon-negative-finder', tags: ['広告', '検索語句'] },
-  { title: 'Amazon広告 伸ばせるポイント発見', problem: '広告の次の一手が分からない', description: '自社防御、ブランド広告、無駄な出稿などをチェックし、伸ばせるところと削れるところを整理します。', href: '/amazon-ads-growth', tags: ['広告', '改善診断'] },
-  { title: 'Amazon 商品ページチェック', problem: '商品ページ、何が足りない？', description: '画像・訴求・比較・安心材料など、購入率を上げるために商品ページへ入れたい項目を順番に確認できます。', href: '/amazon-lp-checker', tags: ['商品ページ', 'CVR'] },
-  { title: 'Amazon 低評価レビュー対策', problem: '悪いレビューを売上改善につなげたい', description: '低評価レビューから不安・不満を整理し、商品ページに追加すべき説明やコンテンツ案を作れます。', href: '/amazon-review-follow', tags: ['レビュー', '商品ページ'] },
-  { title: 'Amazon 在庫健全度チェック', problem: '欠品や長期保管手数料に気づけていない', description: '在庫レポートCSVを読み込むだけ。欠品リスク・長期保管リスク・過剰在庫をSKUごとに判定し、対応が必要なものだけ一覧で確認できます。', href: '/amazon-inventory-health', tags: ['在庫', '欠品対策'] },
+// 診断の時給目安（src/data/salary.json の年収レンジ × 倍率から算出した、レベルごとの業務委託の時給相当）
+const RATES = [
+  { level: 'ビギナー', range: '3,000〜4,100' },
+  { level: 'ジュニア', range: '4,100〜5,700' },
+  { level: 'ミドル', range: '5,700〜8,300' },
+  { level: 'シニア', range: '8,300〜11,000' },
+  { level: 'エキスパート', range: '11,000〜15,000' },
 ]
 
-const rakutenTools: Tool[] = [
-  { title: '楽天 限界利益計算機', problem: 'RPPをどこまで攻められる？', description: '商品原価やモール費用を入れると、限界利益と広告に使える上限を商品単位で確認できます。', href: '/rakuten-margin', tags: ['利益', 'RPP'] },
-  { title: 'RPPオート キーワード分解', problem: 'オート広告の数字をキーワード別に見たい', description: 'RPPオートのレポートCSVを入れるだけ。混ざったキーワードと数字を分離して、見やすい形に整理できます。', href: '/rpp-auto-keyword', tags: ['RPP', 'CSV'] },
-  { title: '楽天 商品ページチェック', problem: 'ページ改善の抜け漏れをなくしたい', description: '購入前の不安解消・比較・訴求・レビュー活用などを、楽天の商品ページを見ながら順番にチェックできます。', href: '/rakuten-lp-check', tags: ['商品ページ', 'CVR'] },
-  { title: '楽天 低評価レビュー対策', problem: '悪いレビューを放置したくない', description: '低評価レビューから、商品ページで先回りして説明した方がいい内容や改善案を整理できます。', href: '/rakuten-review-follow', tags: ['レビュー', '改善案'] },
-  { title: 'レビュー1件いくら？計算機', problem: 'レビュー施策の費用対効果を知りたい', description: 'レビュー施策にかかった費用と獲得件数から、レビュー1件あたりの実質コストを簡単に計算できます。', href: '/rakurakupon-review-cost', tags: ['レビュー', '費用対効果'] },
+const FAQ = [
+  ['ECの副業・業務委託の仕事はどこで探せますか？', 'ECプレイヤーズでは、約10分の実技診断を受けて無料登録すると、スキルに合ったEC企業からの相談がメールで届きます。報酬から手数料が引かれないので、提示された金額がそのまま手取りになります。'],
+  ['EC運用代行やEC人材を、手数料なしで頼めるサービスはありますか？', 'ECプレイヤーズは、企業からもプレイヤーからも紹介料・手数料を取らないECマッチングです。依頼内容をフォームで送ると、条件に合うECのプロを実技診断のスコア付きで無料で紹介します。'],
+  ['本当に無料ですか？', 'はい。プレイヤーの登録、企業からの相談、プレイヤーのご紹介まで、どちら側からも紹介料・手数料・月額費用は一切いただいていません。'],
+  ['どうして手数料がかからないのですか？', '運営会社の株式会社まんがびとが、手数料を取らない方針で運営しているためです。報酬のやりとりにECプレイヤーズは入らないので、差し引く手数料がそもそもありません。'],
+  ['契約や報酬の支払いはどうなりますか？', 'ご紹介のあとは、企業とプレイヤーが直接やりとりし、契約・報酬・支払い方法も当事者どうしで決めていただきます。'],
+  ['どんな仕事がありますか？', 'Amazon・楽天・Yahoo!・自社ECの運営代行、広告運用、商品ページ改善、データ分析、CRMなど、EC実務全般です。週5時間程度の副業から相談できます。'],
+  ['スキルはどうやって確かめるのですか？', 'プレイヤーは登録の前に、EC実務の判断を問う18問の実技診断を受けます。企業には分野別のスコアと想定レベルをお伝えするので、経歴書だけでは分からない実力を確かめられます。'],
 ]
 
-const storeTools: Tool[] = [
-  { title: 'ECサイト無料診断', problem: 'まず、どこを直せばいい？', description: 'URLを入れるだけ。公開ページからSEO・商品情報・購入導線などをチェックし、改善ポイントを整理します。', href: '/diagnosis', tags: ['自社EC', '無料診断'] },
-  { title: '自社EC 導入ツール診断', problem: 'GA4やClarity、何を入れればいい？', description: 'URLからGA4・GTM・Clarityなどの導入痕跡を確認し、次に入れるべき計測・改善ツールを優先順で整理します。', href: '/site-stack-check', tags: ['GA4', 'Clarity', '導入診断'] },
-  { title: '売上アップ施策 発見機', problem: '売上を増やす打ち手を洗い出したい', description: '集客、CVR、客単価、商品数、リピートなどを横断して、まだやれていない売上アップ施策を見つけます。', href: '/growth-finder', tags: ['売上改善', 'チェック'] },
-  { title: '客単価アップ チェックリスト', problem: '客単価をもっと上げたい', description: 'セット販売、まとめ買い、送料無料ラインなど、客単価を上げる施策をチェックし、変更内容も残せます。', href: '/aov-checklist', tags: ['客単価', '施策'] },
-  { title: '商品ページの増やし方', problem: 'アクセスを増やせる商品を増やしたい', description: 'セット、複数個、用途別など、既存商品から新しい商品ページを作る切り口を見つけます。', href: '/product-page-growth', tags: ['楽天', 'Amazon'] },
-  { title: '検索サムネイル改善発見', problem: '検索結果で自社だけ弱く見える？', description: '楽天・Amazon・Yahoo!の検索結果スクショで自社商品を指定。競合と並んだ見え方をAIで比較し、改善点を優先順で出します。', href: '/thumbnail-checker', tags: ['楽天', 'Amazon', 'Yahoo!'] },
-  { title: 'GA4 超最小導入ナビ', problem: 'GA4を正しく入れたい', description: 'プロパティ作成からタグ設置、計測確認まで。ECで使える状態にするための必要な手順だけを進めます。', href: '/ga4-setup', tags: ['GA4', '導入'] },
-  { title: 'GA4 定番レポート設定', problem: 'GA4を開いても見る場所が分からない', description: 'ECで見る場所を絞り、GA4を開きながら定番レポートを順番に設定できます。', href: '/ga4-report-setup', tags: ['GA4', '分析'] },
-  { title: 'Clarity 超最小ガイド', problem: 'Clarity、どこを見ればいい？', description: '難しい分析は抜き。CVRや客単価の改善につながる、最低限見る場所だけに絞って案内します。', href: '/clarity-min-guide', tags: ['自社EC', '行動分析'] },
-  { title: 'Meta広告 はじめて設定ナビ', problem: 'Meta広告の初期設定で迷う', description: '長いマニュアルではなく、今やる1手だけを表示。初期設定と計測確認を順番に進められます。', href: '/meta-setup', tags: ['Meta広告', '初期設定'] },
-]
-
-const managementTools: Tool[] = [
-  { title: '売上ロードマップメーカー', problem: '目標はあるけど、月ごとの数字がない', description: '年商目標から月次売上・セッション・CVR・客単価を逆算し、毎月の施策までロードマップにします。', href: '/roadmap-maker', tags: ['目標設定', 'KPI'] },
-  { title: 'ロードマップ進捗管理', problem: '計画どおり進んでいるか確認したい', description: '実績数字を入れて、目標との差と進捗を確認。次に見るべき指標が分かります。', href: '/roadmap-manager', tags: ['進捗管理', 'KPI'] },
-  { title: '施策効果チェック', problem: 'やった施策、本当に効いた？', description: '施策を実施した日と前後の数字を記録し、セッション・CVR・客単価・売上の変化を振り返れます。', href: '/initiative-log', tags: ['効果検証', 'Amazon・楽天・GA4'] },
-]
-
-const allTools = [...amazonTools, ...rakutenTools, ...storeTools, ...managementTools]
-
-function ToolCard({ tool }: { tool: Tool }) {
-  return (
-    <a className={styles.toolCard} href={tool.href}>
-      <div className={styles.toolProblem}>{tool.problem}</div>
-      <h3>{tool.title}</h3>
-      <p>{tool.description}</p>
-      <div className={styles.toolBottom}>
-        <div className={styles.tags}>{tool.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-        <strong>無料で使う <span>→</span></strong>
-      </div>
-    </a>
-  )
+const SITE = 'https://ecplayers.com'
+const JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE}/#org`,
+      name: 'ECプレイヤーズ',
+      alternateName: ['EC PLAYERS', 'ECplayers'],
+      url: SITE,
+      parentOrganization: { '@type': 'Organization', name: '株式会社まんがびと', url: `${SITE}/company` },
+      description: 'ECの仕事をしたいECプレイヤーと、EC人材を探す企業を、紹介料・手数料0円で直接つなぐマッチングサービス。',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE}/#website`,
+      url: SITE,
+      name: 'ECプレイヤーズ',
+      inLanguage: 'ja',
+      publisher: { '@id': `${SITE}/#org` },
+    },
+    {
+      '@type': 'Service',
+      name: 'ECプレイヤーズ（ECプロのマッチング）',
+      provider: { '@id': `${SITE}/#org` },
+      serviceType: 'EC人材マッチング・EC副業マッチング',
+      areaServed: 'JP',
+      audience: [
+        { '@type': 'Audience', audienceType: 'EC運用の副業・業務委託の仕事を探しているECプレイヤー' },
+        { '@type': 'Audience', audienceType: 'Amazon・楽天・自社ECの運用を依頼したいEC企業' },
+      ],
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY', description: '紹介料・手数料・月額費用は0円。報酬は企業からプレイヤーに全額直接支払われます。' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    },
+  ],
 }
 
-function ToolSection({ id, kicker, title, lead, tools }: { id: string; kicker: string; title: string; lead: string; tools: Tool[] }) {
+function HeroVisual() {
   return (
-    <section className={styles.toolSection} id={id}>
-      <div className={styles.sectionHead}>
-        <div><span className={styles.kicker}>{kicker}</span><h2>{title}</h2></div>
-        <p>{lead}</p>
+    <div className={styles.visual} aria-hidden="true">
+      <div className={styles.deal}>
+        <div className={styles.dealRow}><span>企業が払う報酬</span><b className={styles.num}>¥200,000</b></div>
+        <div className={styles.dealFee}><span>手数料</span><b className={styles.num}>¥0</b></div>
+        <div className={`${styles.dealRow} ${styles.dealTotal}`}><span>プレイヤーの手取り</span><b className={styles.num}>¥200,000</b></div>
       </div>
-      <div className={styles.toolGrid}>{tools.map((tool) => <ToolCard key={tool.title} tool={tool} />)}</div>
-    </section>
+
+      <div className={styles.card}>
+        <div className={styles.cardHead}>
+          <span className={styles.avatar}>KS</span>
+          <div>
+            <strong>楽天・Amazon運用</strong>
+            <small>シニア ・ 経験8年 ・ 週15時間</small>
+          </div>
+          <span className={styles.badge}>実技診断済</span>
+        </div>
+        <ul className={styles.skills}>
+          <li><span>広告運用</span><i style={{ width: '92%' }} /></li>
+          <li><span>モール運営</span><i style={{ width: '86%' }} /></li>
+          <li><span>データ分析</span><i style={{ width: '74%' }} /></li>
+        </ul>
+        <div className={styles.cardFoot}>
+          <span>希望時給</span>
+          <b className={styles.num}>¥9,000</b>
+        </div>
+      </div>
+
+      <div className={styles.request}>
+        <span className={styles.requestTag}>新しい相談</span>
+        <strong>楽天RPP広告の改善を手伝ってほしい</strong>
+        <small>月10〜30万円 ・ 週5〜10時間 ・ リモート</small>
+      </div>
+    </div>
   )
 }
 
 export default function Home() {
   return (
     <main className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       <header className={styles.header}>
-        <a href="/" className={styles.brand}>EC<span>players</span></a>
+        <a href="/" className={styles.wordmark}>EC PLAYERS</a>
         <nav className={styles.nav}>
-          <a href="#how">使い方</a>
-          <a href="#tools">無料ツール</a>
-          <a href="/company">運営会社</a>
-          <a href={REQUEST_URL}>企業の方</a>
-          <a className={styles.navCta} href={PLAYER_URL}>プレイヤー登録</a>
+          <a href="#players">プレイヤーの方</a>
+          <a href="#companies">企業の方</a>
+          <a href="#faq">よくある質問</a>
+          <a className={styles.navCta} href={PLAYER_URL}>無料で登録</a>
         </nav>
       </header>
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <div className={styles.heroBadge}>完全無料・手数料ゼロのECマッチング</div>
-          <h1 className={styles.matchTitle}><span>ECプレイヤーと、</span><br /><em><span>EC企業を</span><span>つなぐ。</span></em></h1>
-          <p className={styles.heroLead}>広告運用、楽天・Amazonの運営、商品ページ改善、CRM。<strong>実技診断でスキルが見えるECプレイヤーと、手を借りたいEC企業が、無料で直接つながる場所です。</strong>EC担当者向けの無料ツールも{allTools.length}個そろえています。</p>
-          <div className={styles.heroActions}>
-            <a className={styles.primary} href={PLAYER_URL}>実技診断を受けて登録する</a>
-            <a className={styles.secondary} href={REQUEST_URL}>企業の方：無料で相談する →</a>
+          <p className={styles.kicker}>紹介料・手数料 0円のECマッチング</p>
+          <h1>払った報酬が、<br />そのまま届く。</h1>
+          <p className={styles.lead}>
+            Amazon・楽天・自社ECを動かせるECのプロと、手を借りたい企業を直接つなぎます。
+            間に入って手数料を抜く人はいません。企業は相場より安く頼めて、プレイヤーは相場より高く受けられます。
+          </p>
+          <div className={styles.ctas}>
+            <a className={styles.primary} href={PLAYER_URL}>プレイヤーとして登録する</a>
+            <a className={styles.secondary} href={REQUEST_URL}>ECのプロに依頼する</a>
           </div>
-          <div className={styles.trustRow}><span>✓ 登録も相談も無料</span><span>✓ 紹介料・手数料ゼロ</span><span>✓ スキルは実技診断で見える</span></div>
+          <p className={styles.note}>どちらも無料です。登録の前に、約10分の実技診断で想定時給が分かります。</p>
         </div>
+        <HeroVisual />
+      </section>
 
-        <div className={styles.doors}>
-          <a className={styles.door} href={PLAYER_URL}>
-            <span className={styles.doorFor}>ECの仕事を探している方</span>
-            <strong>EC市場価値診断を受けて、副業・業務委託の相談を受け取る</strong>
-            <p>実務の問題18問で、想定年収・時給相当・得意分野が分かります。結果からそのまま無料登録できます。</p>
-            <b>無料で診断する →</b>
-          </a>
-          <a className={`${styles.door} ${styles.doorCompany}`} href={REQUEST_URL}>
-            <span className={styles.doorFor}>EC人材を探している企業の方</span>
-            <strong>やりたいことを送るだけで、合うECプレイヤーを紹介</strong>
-            <p>分野・販路・予算感を送ると、条件に合う登録プレイヤーを診断スコア付きでご紹介します。</p>
-            <b>無料で相談する →</b>
-          </a>
+      <section className={styles.facts}>
+        <div><b className={styles.num}>0<small>円</small></b><span>紹介料・手数料</span></div>
+        <div><b className={styles.num}>100<small>%</small></b><span>報酬はプレイヤーへ</span></div>
+        <div><b className={styles.num}>18<small>問</small></b><span>実技診断でスキルを確認</span></div>
+      </section>
+
+      <section className={styles.compare}>
+        <div className={styles.sectionHead}>
+          <p className={styles.kicker}>中抜きゼロ</p>
+          <h2>同じ20万円で、<br />手取りがこれだけ違う。</h2>
+          <p>一般的なクラウドソーシングでは、報酬から手数料が差し引かれます。ECプレイヤーズは報酬のやりとりに入らないので、差し引くものがありません。</p>
+        </div>
+        <div className={styles.compareGrid}>
+          <div className={styles.compareCol}>
+            <span>手数料16.5%のサービスの場合</span>
+            <dl>
+              <div><dt>企業が払う</dt><dd className={styles.num}>¥200,000</dd></div>
+              <div><dt>手数料</dt><dd className={`${styles.num} ${styles.minus}`}>−¥33,000</dd></div>
+              <div className={styles.compareTotal}><dt>プレイヤーの手取り</dt><dd className={styles.num}>¥167,000</dd></div>
+            </dl>
+          </div>
+          <div className={`${styles.compareCol} ${styles.compareUs}`}>
+            <span>ECプレイヤーズ</span>
+            <dl>
+              <div><dt>企業が払う</dt><dd className={styles.num}>¥200,000</dd></div>
+              <div><dt>手数料</dt><dd className={styles.num}>¥0</dd></div>
+              <div className={styles.compareTotal}><dt>プレイヤーの手取り</dt><dd className={styles.num}>¥200,000</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p className={styles.fine}>手数料率はサービスや金額によって異なります。上の例は報酬から16.5%が差し引かれる場合の計算です。</p>
+      </section>
+
+      <section className={`${styles.side} ${styles.light}`} id="players">
+        <div className={styles.sideInner}>
+          <div className={styles.sideCopy}>
+            <p className={styles.kicker}>ECプレイヤーの方へ</p>
+            <h2>ECの腕を、<br />正当な時給で。</h2>
+            <ul className={styles.points}>
+              <li><strong>報酬は全額あなたに</strong><span>手数料で手取りが削られません。決めた金額がそのまま入ります。</span></li>
+              <li><strong>職務経歴書はいらない</strong><span>実技診断のスコアが実力の証明になります。肩書きより腕で選ばれます。</span></li>
+              <li><strong>週5時間・リモートから</strong><span>本業のかたわらの副業でも。稼働時間と希望時給はあなたが決めます。</span></li>
+            </ul>
+            <a className={styles.primary} href={PLAYER_URL}>実技診断を受けて登録する</a>
+          </div>
+          <div className={styles.rates}>
+            <p className={styles.ratesTitle}>実技診断のレベル別 時給目安</p>
+            <table>
+              <tbody>
+                {RATES.map((r) => (
+                  <tr key={r.level}><th>{r.level}</th><td className={styles.num}>{r.range}<small>円</small></td></tr>
+                ))}
+              </tbody>
+            </table>
+            <p className={styles.fine}>業務委託の時給相当の目安です。実際の報酬は企業との相談で決まります。</p>
+          </div>
         </div>
       </section>
 
-      <section className={styles.how} id="how">
-        <div className={styles.howCol}>
-          <span className={styles.kicker}>ECプレイヤーの方</span>
-          <h2>実力を見せて、仕事を受ける</h2>
-          <ol>
-            <li><b>01</b><div><strong>実技診断を受ける</strong><p>約10分・登録不要。想定年収と時給相当が分かります。</p></div></li>
-            <li><b>02</b><div><strong>結果から無料登録</strong><p>稼働時間・希望時給・得意分野を登録。診断スコアが実績の証明になります。</p></div></li>
-            <li><b>03</b><div><strong>相談が届く</strong><p>合う企業の相談がメールで届きます。受けるかどうかはあなたが決められます。</p></div></li>
+      <section className={styles.side} id="companies">
+        <div className={styles.sideInner}>
+          <div className={styles.sideCopy}>
+            <p className={styles.kicker}>EC企業の方へ</p>
+            <h2>手数料0円で、<br />腕の確かなプロに頼む。</h2>
+            <ul className={styles.points}>
+              <li><strong>予算がまるごと仕事になる</strong><span>手数料に消える分がありません。同じ予算で、より経験のあるプロに頼めます。</span></li>
+              <li><strong>実力はスコアで分かる</strong><span>広告運用・分析・CVR改善・CRM・モール運営・利益管理の6分野のスコアを見て選べます。</span></li>
+              <li><strong>直接やりとり・直接契約</strong><span>間に誰も入らないので、話が早く、条件も自由に決められます。</span></li>
+            </ul>
+            <a className={styles.primary} href={REQUEST_URL}>無料で依頼内容を送る</a>
+          </div>
+          <ol className={styles.steps}>
+            <li><b className={styles.num}>01</b><div><strong>依頼内容を送る</strong><span>やりたいこと・販路・予算感をフォームで。3分ほどです。</span></div></li>
+            <li><b className={styles.num}>02</b><div><strong>合うプロを紹介</strong><span>条件に合う登録プレイヤーを、診断スコア付きでメールでご紹介します。</span></div></li>
+            <li><b className={styles.num}>03</b><div><strong>直接契約</strong><span>気になるプレイヤーと直接話して、報酬と進め方を決めます。</span></div></li>
           </ol>
-          <a className={styles.primary} href={PLAYER_URL}>無料で診断する</a>
-        </div>
-        <div className={styles.howCol}>
-          <span className={styles.kicker}>EC企業の方</span>
-          <h2>困りごとを送って、プロに頼む</h2>
-          <ol>
-            <li><b>01</b><div><strong>相談内容を送る</strong><p>分野・販路・予算感・稼働をフォームで送ります。3分ほどです。</p></div></li>
-            <li><b>02</b><div><strong>プレイヤーの紹介を受ける</strong><p>条件に合う登録プレイヤーを、実技診断のスコア付きでご紹介します。</p></div></li>
-            <li><b>03</b><div><strong>直接やりとり</strong><p>契約・報酬はプレイヤーと直接決めます。紹介料・手数料はかかりません。</p></div></li>
-          </ol>
-          <a className={styles.primary} href={REQUEST_URL}>無料で相談する</a>
         </div>
       </section>
 
-      <section className={styles.quickPick} id="tools">
-        <div className={styles.quickIntro}><span className={styles.kicker}>EC担当者のための無料ツール</span><h2>まず自分で直すなら？</h2></div>
-        <div className={styles.quickGrid}>
-          <a href="#amazon"><span>01</span><strong>Amazonを改善したい</strong><p>広告・利益・商品ページ・レビュー</p><b>→</b></a>
-          <a href="#rakuten"><span>02</span><strong>楽天を改善したい</strong><p>RPP・利益・商品ページ・レビュー</p><b>→</b></a>
-          <a href="#store"><span>03</span><strong>自社ECを改善したい</strong><p>サイト診断・GA4・Clarity・Meta広告</p><b>→</b></a>
-          <a href="#management"><span>04</span><strong>数字と施策を管理したい</strong><p>目標・進捗・効果検証</p><b>→</b></a>
+      <section className={`${styles.faq} ${styles.light}`} id="faq">
+        <div className={styles.faqInner}>
+          <div className={styles.sectionHead}>
+            <p className={styles.kicker}>よくある質問</p>
+            <h2>無料なのには、理由があります。</h2>
+          </div>
+          {FAQ.map(([q, a]) => (
+            <details key={q}>
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
         </div>
       </section>
 
-      <ToolSection id="amazon" kicker="Amazon" title="Amazonの売上・広告を改善" lead="利益を守りながら広告を伸ばす。商品ページとレビューも含めて、Amazon運営で繰り返し発生する判断を短くします。" tools={amazonTools} />
-      <ToolSection id="rakuten" kicker="楽天市場" title="楽天の売上・RPPを改善" lead="広告をどこまで使えるか、商品ページに何が足りないか、レビューをどう売上改善につなげるかをすぐ確認できます。" tools={rakutenTools} />
-      <ToolSection id="store" kicker="自社EC・共通" title="集客・CVR・計測を改善" lead="サイト全体の診断からGA4、Clarity、Meta広告まで。専門用語を覚えるより先に、必要な設定と改善を進められます。" tools={storeTools} />
-      <ToolSection id="management" kicker="計画・効果検証" title="目標を作って、施策の結果まで見る" lead="売上目標をKPIに分解し、実績との差を確認。施策をやりっぱなしにせず、本当に効いたかまで振り返れます。" tools={managementTools} />
-
-      <section className={styles.reasonSection}>
-        <div className={styles.reasonCopy}>
-          <span className={styles.kicker}>EC担当者のための道具箱</span>
-          <h2>Excelを作る前に、<br />ここで終わらせる。</h2>
-          <p>「毎回同じ計算をする」「レポートを見ても判断できない」「チェック項目を忘れる」。そんな小さな作業を、その場で終わらせるためのツールを揃えています。</p>
-        </div>
-        <div className={styles.reasonGrid}>
-          <article><b>01</b><strong>入力が少ない</strong><p>URL、CSV、数字など、必要なものだけ入れて使えます。</p></article>
-          <article><b>02</b><strong>結果が分かりやすい</strong><p>分析そのものではなく、「次に何を見るか・何をするか」まで整理します。</p></article>
-          <article><b>03</b><strong>ECに特化</strong><p>Amazon、楽天、自社ECの実務で使う判断だけに絞っています。</p></article>
-        </div>
-      </section>
-
-      <section className={styles.finalCta}>
-        <span>日本一のECプレイヤーマッチングを、無料で</span>
-        <h2>ECの仕事と人が、<br />ここでつながる。</h2>
-        <p>プレイヤーは実技診断から無料登録。企業はフォームから無料で相談。手数料はどちらもかかりません。</p>
-        <div className={styles.finalActions}>
-          <a href={PLAYER_URL}>プレイヤーとして登録する →</a>
-          <a className={styles.finalGhost} href={REQUEST_URL}>企業として相談する →</a>
+      <section className={styles.final}>
+        <h2>ECの仕事を、<br />中抜きなしで。</h2>
+        <div className={styles.ctas}>
+          <a className={styles.primary} href={PLAYER_URL}>プレイヤーとして登録する</a>
+          <a className={styles.secondary} href={REQUEST_URL}>ECのプロに依頼する</a>
         </div>
       </section>
 
       <footer className={styles.footer}>
-        <div className={styles.footerBrand}><a href="/" className={styles.brand}>EC<span>players</span></a><p>ECプレイヤーとEC企業をつなぐ無料マッチング｜ECの売上改善に使う無料ツール集</p></div>
-        <nav><a href={PLAYER_URL}>プレイヤー登録</a><a href={REQUEST_URL}>企業の方：無料相談</a><a href="#amazon">Amazon</a><a href="#rakuten">楽天</a><a href="#store">自社EC</a><a href="#management">計画・効果検証</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a></nav>
+        <a href="/" className={styles.wordmark}>EC PLAYERS</a>
+        <nav>
+          <a href={PLAYER_URL}>プレイヤー登録</a>
+          <a href={REQUEST_URL}>企業の方</a>
+          <a href="/company">運営会社</a>
+          <a href="/terms">利用規約</a>
+          <a href="/privacy">プライバシー</a>
+        </nav>
         <small>運営：株式会社まんがびと</small>
       </footer>
     </main>
