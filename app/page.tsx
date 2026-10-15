@@ -1,5 +1,8 @@
 import styles from './Home.module.css'
 
+const PLAYER_URL = 'https://shindan.ecplayers.com/'
+const REQUEST_URL = 'https://shindan.ecplayers.com/request'
+
 type Tool = {
   title: string
   problem: string
@@ -79,38 +82,67 @@ export default function Home() {
       <header className={styles.header}>
         <a href="/" className={styles.brand}>EC<span>players</span></a>
         <nav className={styles.nav}>
-          <a href="#amazon">Amazon</a>
-          <a href="#rakuten">楽天</a>
-          <a href="#store">自社EC</a>
-          <a href="#management">計画・効果検証</a>
+          <a href="#how">使い方</a>
+          <a href="#tools">無料ツール</a>
           <a href="/company">運営会社</a>
-          <a className={styles.navCta} href="#tools">無料ツール一覧</a>
+          <a href={REQUEST_URL}>企業の方</a>
+          <a className={styles.navCta} href={PLAYER_URL}>プレイヤー登録</a>
         </nav>
       </header>
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <div className={styles.heroBadge}>Amazon・楽天・自社ECに対応</div>
-          <h1>ECの売上改善に使う、<br /><em>無料ツール集。</em></h1>
-          <p className={styles.heroLead}>広告費の上限計算、ムダ広告の発見、商品ページのチェック、レビュー分析、GA4設定、施策の効果検証まで。<strong>EC担当者が日々やる面倒な作業を、すぐ終わらせる道具をまとめました。</strong></p>
+          <div className={styles.heroBadge}>完全無料・手数料ゼロのECマッチング</div>
+          <h1 className={styles.matchTitle}><span>ECプレイヤーと、</span><br /><em><span>EC企業を</span><span>つなぐ。</span></em></h1>
+          <p className={styles.heroLead}>広告運用、楽天・Amazonの運営、商品ページ改善、CRM。<strong>実技診断でスキルが見えるECプレイヤーと、手を借りたいEC企業が、無料で直接つながる場所です。</strong>EC担当者向けの無料ツールも{allTools.length}個そろえています。</p>
           <div className={styles.heroActions}>
-            <a className={styles.primary} href="#tools">ツールを選ぶ</a>
-            <a className={styles.secondary} href="/diagnosis">まずECサイトを無料診断 →</a>
+            <a className={styles.primary} href={PLAYER_URL}>実技診断を受けて登録する</a>
+            <a className={styles.secondary} href={REQUEST_URL}>企業の方：無料で相談する →</a>
           </div>
-          <div className={styles.trustRow}><span>✓ 無料で使える</span><span>✓ ブラウザですぐ使える</span><span>✓ EC実務に特化</span></div>
+          <div className={styles.trustRow}><span>✓ 登録も相談も無料</span><span>✓ 紹介料・手数料ゼロ</span><span>✓ スキルは実技診断で見える</span></div>
         </div>
 
-        <div className={styles.heroPanel}>
-          <div className={styles.heroPanelHead}><span>こんな時に使えます</span><b>{allTools.length}ツール</b></div>
-          <a href="/amazon-margin"><span className={styles.heroIcon}>¥</span><div><small>広告費の上限を知りたい</small><strong>Amazon 限界利益計算機</strong></div><b>→</b></a>
-          <a href="/amazon-negative-finder"><span className={styles.heroIcon}>×</span><div><small>ムダ広告を止めたい</small><strong>Amazon広告 除外発見</strong></div><b>→</b></a>
-          <a href="/rakuten-lp-check"><span className={styles.heroIcon}>✓</span><div><small>商品ページを改善したい</small><strong>楽天 商品ページチェック</strong></div><b>→</b></a>
-          <a href="/initiative-log"><span className={styles.heroIcon}>↗</span><div><small>施策が効いたか知りたい</small><strong>施策効果チェック</strong></div><b>→</b></a>
+        <div className={styles.doors}>
+          <a className={styles.door} href={PLAYER_URL}>
+            <span className={styles.doorFor}>ECの仕事を探している方</span>
+            <strong>EC市場価値診断を受けて、副業・業務委託の相談を受け取る</strong>
+            <p>実務の問題18問で、想定年収・時給相当・得意分野が分かります。結果からそのまま無料登録できます。</p>
+            <b>無料で診断する →</b>
+          </a>
+          <a className={`${styles.door} ${styles.doorCompany}`} href={REQUEST_URL}>
+            <span className={styles.doorFor}>EC人材を探している企業の方</span>
+            <strong>やりたいことを送るだけで、合うECプレイヤーを紹介</strong>
+            <p>分野・販路・予算感を送ると、条件に合う登録プレイヤーを診断スコア付きでご紹介します。</p>
+            <b>無料で相談する →</b>
+          </a>
+        </div>
+      </section>
+
+      <section className={styles.how} id="how">
+        <div className={styles.howCol}>
+          <span className={styles.kicker}>ECプレイヤーの方</span>
+          <h2>実力を見せて、仕事を受ける</h2>
+          <ol>
+            <li><b>01</b><div><strong>実技診断を受ける</strong><p>約10分・登録不要。想定年収と時給相当が分かります。</p></div></li>
+            <li><b>02</b><div><strong>結果から無料登録</strong><p>稼働時間・希望時給・得意分野を登録。診断スコアが実績の証明になります。</p></div></li>
+            <li><b>03</b><div><strong>相談が届く</strong><p>合う企業の相談がメールで届きます。受けるかどうかはあなたが決められます。</p></div></li>
+          </ol>
+          <a className={styles.primary} href={PLAYER_URL}>無料で診断する</a>
+        </div>
+        <div className={styles.howCol}>
+          <span className={styles.kicker}>EC企業の方</span>
+          <h2>困りごとを送って、プロに頼む</h2>
+          <ol>
+            <li><b>01</b><div><strong>相談内容を送る</strong><p>分野・販路・予算感・稼働をフォームで送ります。3分ほどです。</p></div></li>
+            <li><b>02</b><div><strong>プレイヤーの紹介を受ける</strong><p>条件に合う登録プレイヤーを、実技診断のスコア付きでご紹介します。</p></div></li>
+            <li><b>03</b><div><strong>直接やりとり</strong><p>契約・報酬はプレイヤーと直接決めます。紹介料・手数料はかかりません。</p></div></li>
+          </ol>
+          <a className={styles.primary} href={REQUEST_URL}>無料で相談する</a>
         </div>
       </section>
 
       <section className={styles.quickPick} id="tools">
-        <div className={styles.quickIntro}><span className={styles.kicker}>やりたいことから選ぶ</span><h2>今の困りごとは？</h2></div>
+        <div className={styles.quickIntro}><span className={styles.kicker}>EC担当者のための無料ツール</span><h2>まず自分で直すなら？</h2></div>
         <div className={styles.quickGrid}>
           <a href="#amazon"><span>01</span><strong>Amazonを改善したい</strong><p>広告・利益・商品ページ・レビュー</p><b>→</b></a>
           <a href="#rakuten"><span>02</span><strong>楽天を改善したい</strong><p>RPP・利益・商品ページ・レビュー</p><b>→</b></a>
@@ -138,15 +170,18 @@ export default function Home() {
       </section>
 
       <section className={styles.finalCta}>
-        <span>何から始めるか迷ったら</span>
-        <h2>まず、ECサイトを<br />無料診断。</h2>
-        <p>URLを入れるだけで、今すぐ見直せるポイントを確認できます。</p>
-        <a href="/diagnosis">無料で診断する →</a>
+        <span>日本一のECプレイヤーマッチングを、無料で</span>
+        <h2>ECの仕事と人が、<br />ここでつながる。</h2>
+        <p>プレイヤーは実技診断から無料登録。企業はフォームから無料で相談。手数料はどちらもかかりません。</p>
+        <div className={styles.finalActions}>
+          <a href={PLAYER_URL}>プレイヤーとして登録する →</a>
+          <a className={styles.finalGhost} href={REQUEST_URL}>企業として相談する →</a>
+        </div>
       </section>
 
       <footer className={styles.footer}>
-        <div className={styles.footerBrand}><a href="/" className={styles.brand}>EC<span>players</span></a><p>ECの売上改善に使う無料ツール集</p></div>
-        <nav><a href="#amazon">Amazon</a><a href="#rakuten">楽天</a><a href="#store">自社EC</a><a href="#management">計画・効果検証</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a></nav>
+        <div className={styles.footerBrand}><a href="/" className={styles.brand}>EC<span>players</span></a><p>ECプレイヤーとEC企業をつなぐ無料マッチング｜ECの売上改善に使う無料ツール集</p></div>
+        <nav><a href={PLAYER_URL}>プレイヤー登録</a><a href={REQUEST_URL}>企業の方：無料相談</a><a href="#amazon">Amazon</a><a href="#rakuten">楽天</a><a href="#store">自社EC</a><a href="#management">計画・効果検証</a><a href="/company">会社概要</a><a href="/terms">利用規約</a><a href="/privacy">プライバシー</a><a href="/trademarks">第三者商標</a></nav>
         <small>運営：株式会社まんがびと</small>
       </footer>
     </main>
