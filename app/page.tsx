@@ -5,7 +5,7 @@ const PLAYER_URL = 'https://shindan.ecplayers.com/'
 const REQUEST_URL = 'https://shindan.ecplayers.com/request'
 
 export const metadata: Metadata = {
-  title: 'ECプレイヤーズ | 中抜きゼロ。ECのプロと企業が直接つながる',
+  title: 'ECプレイヤーズ | 中抜きゼロ。ECプレイヤーと企業が直接つながる',
   description:
     '紹介料・手数料0円のECマッチング。企業が払った報酬は、そのままECプレイヤーに届きます。Amazon・楽天・自社ECの運用ができるプロに、実技診断のスコアを見て直接依頼できます。',
 }
@@ -21,7 +21,7 @@ const RATES = [
 
 const FAQ = [
   ['ECの副業・業務委託の仕事はどこで探せますか？', 'ECプレイヤーズでは、約10分の実技診断を受けて無料登録すると、スキルに合ったEC企業からの相談がメールで届きます。報酬から手数料が引かれないので、提示された金額がそのまま手取りになります。'],
-  ['EC運用代行やEC人材を、手数料なしで頼めるサービスはありますか？', 'ECプレイヤーズは、企業からもプレイヤーからも紹介料・手数料を取らないECマッチングです。依頼内容をフォームで送ると、条件に合うECのプロを実技診断のスコア付きで無料で紹介します。'],
+  ['EC運用代行やEC人材を、手数料なしで頼めるサービスはありますか？', 'ECプレイヤーズは、企業からもプレイヤーからも紹介料・手数料を取らないECマッチングです。依頼内容をフォームで送ると、条件に合うECプレイヤーを実技診断のスコア付きで無料で紹介します。'],
   ['本当に無料ですか？', 'はい。プレイヤーの登録、企業からの相談、プレイヤーのご紹介まで、どちら側からも紹介料・手数料・月額費用は一切いただいていません。'],
   ['どうして手数料がかからないのですか？', '運営会社の株式会社まんがびとが、手数料を取らない方針で運営しているためです。報酬のやりとりにECプレイヤーズは入らないので、差し引く手数料がそもそもありません。'],
   ['契約や報酬の支払いはどうなりますか？', 'ご紹介のあとは、企業とプレイヤーが直接やりとりし、契約・報酬・支払い方法も当事者どうしで決めていただきます。'],
@@ -52,7 +52,7 @@ const JSON_LD = {
     },
     {
       '@type': 'Service',
-      name: 'ECプレイヤーズ（ECプロのマッチング）',
+      name: 'ECプレイヤーズ（ECプレイヤーと企業のマッチング）',
       provider: { '@id': `${SITE}/#org` },
       serviceType: 'EC人材マッチング・EC副業マッチング',
       areaServed: 'JP',
@@ -126,12 +126,12 @@ export default function Home() {
           <p className={styles.kicker}>紹介料・手数料 0円のECマッチング</p>
           <h1>払った報酬が、<br />そのまま届く。</h1>
           <p className={styles.lead}>
-            Amazon・楽天・自社ECを動かせるECのプロと、手を借りたい企業を直接つなぎます。
+            Amazon・楽天・自社ECを動かせるECプレイヤーと、手を借りたい企業を直接つなぎます。
             間に入って手数料を抜く人はいません。企業は相場より安く頼めて、プレイヤーは相場より高く受けられます。
           </p>
           <div className={styles.ctas}>
             <a className={styles.primary} href={PLAYER_URL}>プレイヤーとして登録する</a>
-            <a className={styles.secondary} href={REQUEST_URL}>ECのプロに依頼する</a>
+            <a className={styles.secondary} href={REQUEST_URL}>ECプレイヤーに依頼する</a>
           </div>
           <p className={styles.note}>どちらも無料です。登録の前に、約10分の実技診断で想定時給が分かります。</p>
         </div>
@@ -236,7 +236,7 @@ export default function Home() {
         <h2>ECの仕事を、<br />中抜きなしで。</h2>
         <div className={styles.ctas}>
           <a className={styles.primary} href={PLAYER_URL}>プレイヤーとして登録する</a>
-          <a className={styles.secondary} href={REQUEST_URL}>ECのプロに依頼する</a>
+          <a className={styles.secondary} href={REQUEST_URL}>ECプレイヤーに依頼する</a>
         </div>
       </section>
 
