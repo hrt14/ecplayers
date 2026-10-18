@@ -28,10 +28,10 @@ export default function MatchingBand() {
         <div className={styles.copy}>
           <span>ECプレイヤーズ ・ 紹介料・手数料0円</span>
           <strong>{topicOf(path)}、プロに任せませんか？</strong>
-          <p>実技診断でスキルが分かるECのプロに、直接依頼できます。払った報酬は中抜きされず、そのままプロに届きます。</p>
+          <p>実技診断でスキルが分かるECプレイヤーに、直接依頼できます。払った報酬は中抜きされず、そのままプレイヤーに届きます。</p>
         </div>
         <div className={styles.actions}>
-          <a className={styles.primary} href={REQUEST_URL}>ECのプロに依頼する</a>
+          <a className={styles.primary} href={REQUEST_URL}>ECプレイヤーに依頼する</a>
           <a className={styles.secondary} href={PLAYER_URL}>ECの仕事を受けたい方</a>
         </div>
       </div>
